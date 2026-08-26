@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Volure</string>
+    <string name="title_activity_main">Volure</string>
+    <string name="package_name">com.volure.app</string>
+    <string name="custom_url_scheme">com.volure.app</string>
+</resources>

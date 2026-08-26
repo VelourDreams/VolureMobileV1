@@ -1,0 +1,29 @@
+# Normalize text line endings in the repo (LF), check out native on each OS.
+* text=auto
+
+# Shell scripts must stay LF even on Windows checkouts (Gradle wrapper, hooks).
+*.sh   text eol=lf
+gradlew text eol=lf
+
+# Windows batch files must stay CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets — never touch line endings, never diff as text.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.wav   binary
+*.mp3   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.lottie binary
+*.wasm  binary
+*.jar   binary
+*.keystore binary
+*.apk   binary
