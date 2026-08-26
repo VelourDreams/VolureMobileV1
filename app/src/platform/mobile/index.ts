@@ -8,14 +8,23 @@
 //   - selectImage                 -> @capacitor/camera photo picker          (Phase 4)
 //   - onMedia* transport          -> events from the playback service        (Phase 5)
 
+import { Capacitor } from '@capacitor/core'
 import type { Platform } from '../types'
 import * as db from './db'
+import { installLegacyApiShim } from './legacyApiShim'
+
+// Side effect on first import of the platform boundary — runs before any
+// component mounts. Neutralizes the desktop-only window.api.* calls still
+// scattered through App.tsx so the app can boot on Android.
+installLegacyApiShim()
 
 function notReady(method: string): never {
   throw new Error(
     `[platform] "${method}" is not implemented in the Volure Android build yet`,
   )
 }
+
+const noopUnsubscribe = () => () => {}
 
 export const platform: Platform = {
   target: 'mobile',
@@ -108,16 +117,18 @@ export const platform: Platform = {
     return { playlists: await db.getPlaylists(), tracks: await db.getPlaylistTracks(id) }
   },
 
-  // ---- media (Phase 4) ----
-  getMediaUrl: () => notReady('getMediaUrl'),
-  getArt: () => notReady('getArt'),
+  // ---- media ----
+  // `filePath` is a content:// URI from MediaStore (Phase 4). convertFileSrc
+  // proxies it through Capacitor's local server so <audio> and fetch() work.
+  getMediaUrl: (filePath) => Capacitor.convertFileSrc(filePath),
+  getArt: () => notReady('getArt'), // Phase 4 — MediaStore thumbnail
   ensurePlayableAudio: (filePath) => Promise.resolve(filePath),
-  listBackgroundImages: () => notReady('listBackgroundImages'),
-  selectImage: () => notReady('selectImage'),
+  listBackgroundImages: () => Promise.resolve([]), // Phase 4 — bundled assets
+  selectImage: () => notReady('selectImage'), // Phase 4 — photo picker
   selectFolder: () => notReady('selectFolder'),
 
-  // ---- OS transport (Phase 5) ----
-  onMediaPlayPause: () => notReady('onMediaPlayPause'),
-  onMediaNextTrack: () => notReady('onMediaNextTrack'),
-  onMediaPrevTrack: () => notReady('onMediaPrevTrack'),
+  // ---- OS transport (Phase 5 — playback service) ----
+  onMediaPlayPause: noopUnsubscribe,
+  onMediaNextTrack: noopUnsubscribe,
+  onMediaPrevTrack: noopUnsubscribe,
 }
