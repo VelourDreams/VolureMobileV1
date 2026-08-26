@@ -11,6 +11,7 @@
 import { Capacitor } from '@capacitor/core'
 import type { Platform } from '../types'
 import * as db from './db'
+import * as library from './library'
 import { installLegacyApiShim } from './legacyApiShim'
 
 // Side effect on first import of the platform boundary — runs before any
@@ -34,7 +35,7 @@ export const platform: Platform = {
   getTracksInFolder: (folderPath) => db.getTracksInFolder(folderPath),
   searchTracks: (query) => db.searchTracks(query),
   scanLibrary: () => notReady('scanLibrary'),
-  syncLibrary: () => notReady('syncLibrary'),
+  syncLibrary: () => library.syncLibrary(),
   setTrackInLibrary: async (id, inLibrary) => {
     await db.setTrackInLibrary(id, inLibrary ? 1 : 0)
     return (await db.getTrackById(id)) ?? null
@@ -121,7 +122,7 @@ export const platform: Platform = {
   // `filePath` is a content:// URI from MediaStore (Phase 4). convertFileSrc
   // proxies it through Capacitor's local server so <audio> and fetch() work.
   getMediaUrl: (filePath) => Capacitor.convertFileSrc(filePath),
-  getArt: () => notReady('getArt'), // Phase 4 — MediaStore thumbnail
+  getArt: (filePath) => library.getArt(filePath),
   ensurePlayableAudio: (filePath) => Promise.resolve(filePath),
   listBackgroundImages: () => Promise.resolve([]), // Phase 4 — bundled assets
   selectImage: () => notReady('selectImage'), // Phase 4 — photo picker

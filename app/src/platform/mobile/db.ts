@@ -62,6 +62,9 @@ CREATE TABLE IF NOT EXISTS playlist_tracks (
   position INTEGER NOT NULL,
   PRIMARY KEY (playlistId, trackId)
 );
+CREATE TABLE IF NOT EXISTS _sync_seen (
+  filePath TEXT PRIMARY KEY
+);
 `
 
 // ---- connection ----
@@ -231,6 +234,39 @@ type TrackUpsert = Omit<
   'id' | 'dateAdded' | 'lastPlayedAt' | 'customArtPath' | 'key' | 'keySignature'
   | 'favorite' | 'favoriteAt' | 'mood' | 'inAdvancedLibrary' | 'sortOrder'
 >
+
+// Bulk INSERT ... ON CONFLICT for syncLibrary — one transaction for the whole
+// MediaStore snapshot. inLibrary is only set on insert, never on update, so a
+// per-track override survives a resync.
+export async function bulkUpsertTracks(rows: TrackUpsert[]): Promise<void> {
+  const now = Date.now()
+  await runSet(
+    `INSERT INTO tracks (filePath, title, artist, album, genre, trackNo, duration, hasArt, inLibrary, dateAdded, modifiedAt)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT(filePath) DO UPDATE SET
+       title = excluded.title, artist = excluded.artist, album = excluded.album,
+       genre = excluded.genre, trackNo = excluded.trackNo, duration = excluded.duration,
+       hasArt = excluded.hasArt, modifiedAt = excluded.modifiedAt`,
+    rows.map((t) => [
+      t.filePath, t.title, t.artist, t.album, t.genre, t.trackNo,
+      t.duration, t.hasArt, t.inLibrary, now, t.modifiedAt,
+    ]),
+  )
+}
+
+// Drops rows whose filePath isn't in the current device snapshot (song deleted
+// off the phone). Stages the seen paths in the persistent _sync_seen table
+// (rather than a giant NOT IN (?, ?, …) or a connection-scoped TEMP table) so
+// it scales past SQLite's bound-parameter limit and survives the plugin's
+// per-call connection handling.
+export async function pruneTracksNotIn(filePaths: string[]): Promise<void> {
+  await run('DELETE FROM _sync_seen')
+  if (filePaths.length > 0) {
+    await runSet('INSERT OR IGNORE INTO _sync_seen (filePath) VALUES (?)', filePaths.map((p) => [p]))
+  }
+  await run('DELETE FROM tracks WHERE filePath NOT IN (SELECT filePath FROM _sync_seen)')
+  await run('DELETE FROM _sync_seen')
+}
 
 // Used by syncLibrary (Phase 4). inLibrary is left out of the UPDATE branch on
 // purpose — a rescan must not undo a manual per-track override.

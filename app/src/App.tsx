@@ -8069,7 +8069,13 @@ export default function App() {
 
   useEffect(() => {
     const requestId = ++tracksRequestIdRef.current
-    platform.getTracks().then((result) => {
+    // On Android the library is the device's own music (MediaStore), refreshed
+    // on every launch; there's no "add a folder" step. syncLibrary prompts for
+    // the audio permission on first run and returns the same Track[] as getTracks.
+    const initialTracks = import.meta.env.VOLURE_MOBILE
+      ? platform.syncLibrary()
+      : platform.getTracks()
+    initialTracks.then((result) => {
       if (tracksRequestIdRef.current === requestId) setTracks(result)
     })
     platform.getFolders().then(setFolders)
