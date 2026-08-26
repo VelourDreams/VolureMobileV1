@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+dist-electron/
+release/
+*.local
+
+# Local databases / caches
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# --- Capacitor / Android (added when the android/ project is generated) ---
+app/android/.gradle/
+app/android/build/
+app/android/app/build/
+app/android/capacitor-cordova-android-plugins/
+app/android/app/src/main/assets/public/
+app/android/app/src/main/assets/capacitor.config.json
+app/android/app/src/main/assets/capacitor.plugins.json
+app/android/local.properties
+app/android/.idea/
+*.keystore
+*.jks
+!debug.keystore
