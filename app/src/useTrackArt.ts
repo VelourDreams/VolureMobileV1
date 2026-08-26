@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { platform } from './platform'
 
 const artCache = new Map<string, string | null>()
 
@@ -15,7 +16,7 @@ export function useTrackArt(filePath: string | null): string | null {
       return
     }
     let cancelled = false
-    window.api.getArt(filePath).then((result) => {
+    platform.getArt(filePath).then((result) => {
       const url = result ? `data:${result.format};base64,${result.data}` : null
       artCache.set(filePath, url)
       if (!cancelled) setArt(url)

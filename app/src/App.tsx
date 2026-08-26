@@ -8,8 +8,9 @@ import {
   useState,
 } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
-import type { Track, Folder, Playlist, BassInterval } from '../electron/db'
+import type { Track, Folder, Playlist, BassInterval } from './platform'
 import type { AudioExportFormat } from '../electron/audio'
+import { platform } from './platform'
 import type { KeyDetectionRequest, KeyDetectionResponse } from './keyDetectionWorker'
 import {
   DndContext,
@@ -527,7 +528,7 @@ async function getInternalAudioStream(): Promise<MediaStream> {
 
 function TrackArtThumb({ track, size }: { track: Track; size: number }) {
   const art = useTrackArt(track.filePath)
-  const src = track.customArtPath ? window.api.getMediaUrl(track.customArtPath) : (art ?? DEFAULT_ART)
+  const src = track.customArtPath ? platform.getMediaUrl(track.customArtPath) : (art ?? DEFAULT_ART)
   return (
     <img
       src={src}
@@ -1103,7 +1104,7 @@ function getWaveLottieSrc(): Promise<string | null> {
   if (!waveLottieSrcPromise) {
     waveLottieSrcPromise = window.api
       .getWaveLottiePath()
-      .then((filePath) => (filePath ? window.api.getMediaUrl(filePath) : null))
+      .then((filePath) => (filePath ? platform.getMediaUrl(filePath) : null))
   }
   return waveLottieSrcPromise
 }
@@ -1115,7 +1116,7 @@ function getListeningLottieSrc(): Promise<string | null> {
   if (!listeningLottieSrcPromise) {
     listeningLottieSrcPromise = window.api
       .getListeningLottiePath()
-      .then((filePath) => (filePath ? window.api.getMediaUrl(filePath) : null))
+      .then((filePath) => (filePath ? platform.getMediaUrl(filePath) : null))
   }
   return listeningLottieSrcPromise
 }
@@ -2128,7 +2129,7 @@ function RecentTile({
   onContextMenu?: (track: Track, e: React.MouseEvent) => void
 }) {
   const art = useTrackArt(track.filePath)
-  const src = track.customArtPath ? window.api.getMediaUrl(track.customArtPath) : (art ?? DEFAULT_ART)
+  const src = track.customArtPath ? platform.getMediaUrl(track.customArtPath) : (art ?? DEFAULT_ART)
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -2251,7 +2252,7 @@ function FolderTile({
   dragHandle?: TileDragProps
 }) {
   const displayName = folder.name?.trim() || folderBaseName(folder.path)
-  const artSrc = folder.customArtPath ? window.api.getMediaUrl(folder.customArtPath) : DEFAULT_ART
+  const artSrc = folder.customArtPath ? platform.getMediaUrl(folder.customArtPath) : DEFAULT_ART
   const [menuOpen, setMenuOpen] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [pickingImage, setPickingImage] = useState(false)
@@ -2557,7 +2558,7 @@ function ImagePickerPanel({
   const [presets, setPresets] = useState<string[] | null>(null)
 
   useEffect(() => {
-    window.api.listBackgroundImages().then(setPresets)
+    platform.listBackgroundImages().then(setPresets)
   }, [])
 
   return (
@@ -2570,7 +2571,7 @@ function ImagePickerPanel({
             className="art-menu-thumb"
             onClick={() => onSelectPreset(filePath)}
           >
-            <img src={window.api.getMediaUrl(filePath)} alt="" draggable={false} />
+            <img src={platform.getMediaUrl(filePath)} alt="" draggable={false} />
           </button>
         ))}
       </div>
@@ -4980,7 +4981,7 @@ const PlayKeyboard = forwardRef<
     window.api.getPlaySamplePath().then(async (filePath) => {
       if (!filePath || cancelled) return
       const ctx = ensurePlayAudioContext()
-      const res = await fetch(window.api.getMediaUrl(filePath))
+      const res = await fetch(platform.getMediaUrl(filePath))
       const arrayBuffer = await res.arrayBuffer()
       const buffer = await ctx.decodeAudioData(arrayBuffer)
       if (!cancelled) sampleBufferRef.current = buffer
@@ -4989,7 +4990,7 @@ const PlayKeyboard = forwardRef<
     window.api.getPlaySample2Path?.().then(async (filePath) => {
       if (!filePath || cancelled) return
       const ctx = ensurePlayAudioContext()
-      const res = await fetch(window.api.getMediaUrl(filePath))
+      const res = await fetch(platform.getMediaUrl(filePath))
       const arrayBuffer = await res.arrayBuffer()
       const buffer = await ctx.decodeAudioData(arrayBuffer)
       if (!cancelled) sample2BufferRef.current = buffer
@@ -4998,7 +4999,7 @@ const PlayKeyboard = forwardRef<
     window.api.getPlaySample3Path?.().then(async (filePath) => {
       if (!filePath || cancelled) return
       const ctx = ensurePlayAudioContext()
-      const res = await fetch(window.api.getMediaUrl(filePath))
+      const res = await fetch(platform.getMediaUrl(filePath))
       const arrayBuffer = await res.arrayBuffer()
       const buffer = await ctx.decodeAudioData(arrayBuffer)
       if (!cancelled) sample3BufferRef.current = buffer
@@ -5007,7 +5008,7 @@ const PlayKeyboard = forwardRef<
     window.api.getPlaySample4Path?.().then(async (filePath) => {
       if (!filePath || cancelled) return
       const ctx = ensurePlayAudioContext()
-      const res = await fetch(window.api.getMediaUrl(filePath))
+      const res = await fetch(platform.getMediaUrl(filePath))
       const arrayBuffer = await res.arrayBuffer()
       const buffer = await ctx.decodeAudioData(arrayBuffer)
       if (!cancelled) sample4BufferRef.current = buffer
@@ -7993,7 +7994,7 @@ export default function App() {
         sourceBytes = audioBufferToWav(rendered)
         sourceExt = 'wav'
       } else {
-        const res = await fetch(window.api.getMediaUrl(track.filePath))
+        const res = await fetch(platform.getMediaUrl(track.filePath))
         if (!res.ok) throw new Error(`Failed to read file (${res.status})`)
         sourceBytes = await res.arrayBuffer()
         const extMatch = /\.([a-z0-9]+)$/i.exec(track.filePath)
@@ -8052,12 +8053,12 @@ export default function App() {
       const result = await window.api.playDroppedFile(path)
       if (!result?.track) return
       if (!result.track.inLibrary) {
-        await window.api.setTrackInLibrary(result.track.id, true)
+        await platform.setTrackInLibrary(result.track.id, true)
       }
       if (result.inserted) {
         enqueueKeyDetection([{ id: result.track.id, filePath: result.track.filePath }])
       }
-      window.api.getTracks().then(setTracks)
+      platform.getTracks().then(setTracks)
     } catch (err) {
       console.error('Failed to add saved file to the library:', err)
     } finally {
@@ -8068,14 +8069,14 @@ export default function App() {
 
   useEffect(() => {
     const requestId = ++tracksRequestIdRef.current
-    window.api.getTracks().then((result) => {
+    platform.getTracks().then((result) => {
       if (tracksRequestIdRef.current === requestId) setTracks(result)
     })
-    window.api.getFolders().then(setFolders)
-    window.api.listPlaylists().then(setPlaylists)
+    platform.getFolders().then(setFolders)
+    platform.listPlaylists().then(setPlaylists)
     // Restore the last-played track into Now Playing, paused, so launching
     // the app picks up where the user left off instead of starting empty.
-    window.api.getRecentlyPlayed().then((result) => {
+    platform.getRecentlyPlayed().then((result) => {
       setRecentTracks(result)
       const lastPlayed = result[0]
       if (lastPlayed) {
@@ -8089,7 +8090,7 @@ export default function App() {
     const handle = setTimeout(() => {
       const requestId = ++tracksRequestIdRef.current
       const request =
-        query.trim() === '' ? window.api.getTracks() : window.api.searchTracks(query)
+        query.trim() === '' ? platform.getTracks() : platform.searchTracks(query)
       request.then((result) => {
         if (tracksRequestIdRef.current === requestId) setTracks(result)
       })
@@ -8100,7 +8101,7 @@ export default function App() {
   useEffect(() => {
     activeSectionRef.current = activeSection
     if (activeSection === 'recent') {
-      window.api.getRecentlyPlayed().then(setRecentTracks)
+      platform.getRecentlyPlayed().then(setRecentTracks)
       setSelectedIds(new Set())
     }
     if (activeSection !== 'sections') {
@@ -8120,7 +8121,7 @@ export default function App() {
 
   useEffect(() => {
     if (advancedFolder) {
-      window.api.getTracksInFolder(advancedFolder.path).then(setAdvancedFolderTracks)
+      platform.getTracksInFolder(advancedFolder.path).then(setAdvancedFolderTracks)
     } else {
       setAdvancedFolderTracks([])
     }
@@ -8186,7 +8187,7 @@ export default function App() {
       setPlaylistTracks([])
       return
     }
-    window.api.getPlaylistTracks(viewingPlaylist.id).then(setPlaylistTracks)
+    platform.getPlaylistTracks(viewingPlaylist.id).then(setPlaylistTracks)
   }, [viewingPlaylist])
 
   useEffect(() => {
@@ -8202,7 +8203,7 @@ export default function App() {
     // Picking songs for a playlist has to reach isolated folders too, so it
     // fetches directly instead of going through the (isolated-excluded) `tracks`.
     let cancelled = false
-    window.api.getTracksInFolder(playlistPickerFolder.path).then((result) => {
+    platform.getTracksInFolder(playlistPickerFolder.path).then((result) => {
       if (!cancelled) setPlaylistPickerFolderTracks(result)
     })
     return () => {
@@ -8219,7 +8220,7 @@ export default function App() {
     // browsing one has to fetch its contents directly rather than filtering
     // the already-loaded library list.
     let cancelled = false
-    window.api.getTracksInFolder(viewingFolder.path).then((result) => {
+    platform.getTracksInFolder(viewingFolder.path).then((result) => {
       if (!cancelled) setFolderTracks(result)
     })
     return () => {
@@ -8325,7 +8326,7 @@ export default function App() {
   function addSelectionToPlaylist(playlistId: number, ids?: number[]) {
     const trackIds = ids ?? Array.from(selectedIds)
     if (trackIds.length === 0) return
-    window.api.addTracksToPlaylist(playlistId, trackIds).then(({ playlists: updated, tracks: updatedTracks }) => {
+    platform.addTracksToPlaylist(playlistId, trackIds).then(({ playlists: updated, tracks: updatedTracks }) => {
       setPlaylists(updated)
       if (viewingPlaylist?.id === playlistId) {
         setPlaylistTracks(updatedTracks)
@@ -8337,7 +8338,7 @@ export default function App() {
 
   function createPlaylistAndAddSelection(name: string) {
     const trackIds = Array.from(selectedIds)
-    window.api.createPlaylist(name).then((created) => {
+    platform.createPlaylist(name).then((created) => {
       setPlaylists((prev) => [created, ...prev])
       if (trackIds.length > 0) addSelectionToPlaylist(created.id, trackIds)
     })
@@ -8370,8 +8371,8 @@ export default function App() {
     const playlistId = viewingPlaylist.id
     const isMember = playlistTrackIds.has(track.id)
     const request = isMember
-      ? window.api.removeTracksFromPlaylist(playlistId, [track.id])
-      : window.api.addTracksToPlaylist(playlistId, [track.id])
+      ? platform.removeTracksFromPlaylist(playlistId, [track.id])
+      : platform.addTracksToPlaylist(playlistId, [track.id])
     request.then(({ playlists: updated, tracks: updatedTracks }) => {
       setPlaylists(updated)
       setPlaylistTracks(updatedTracks)
@@ -8385,7 +8386,7 @@ export default function App() {
 
   async function detectKeyFromFile(id: number, filePath: string) {
     try {
-      const res = await fetch(window.api.getMediaUrl(filePath))
+      const res = await fetch(platform.getMediaUrl(filePath))
       const arrayBuffer = await res.arrayBuffer()
       if (!keyDetectionDecodeCtxRef.current) {
         keyDetectionDecodeCtxRef.current = new AudioContext()
@@ -8537,7 +8538,7 @@ export default function App() {
       return next
     })
 
-    window.api.updateTagsBulk(ids, pending.tags).then(({ tracks: updated, failedIds }) => {
+    platform.updateTagsBulk(ids, pending.tags).then(({ tracks: updated, failedIds }) => {
       setTracks(updated)
       setFolderTracks((prev) => prev.map((t) => updated.find((u) => u.id === t.id) ?? t))
       setPlaylistTracks((prev) => prev.map((t) => updated.find((u) => u.id === t.id) ?? t))
@@ -8568,14 +8569,14 @@ export default function App() {
 
   function toggleTrackInclude(track: Track) {
     const nextInLibrary = track.inLibrary ? false : true
-    window.api.setTrackInLibrary(track.id, nextInLibrary).then((updated) => {
+    platform.setTrackInLibrary(track.id, nextInLibrary).then((updated) => {
       if (!updated) return
       setFolderTracks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
       setRecentTracks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
       setTracks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
-      window.api.getTracks().then(setTracks)
+      platform.getTracks().then(setTracks)
       if (activeSection === 'recent') {
-        window.api.getRecentlyPlayed().then(setRecentTracks)
+        platform.getRecentlyPlayed().then(setRecentTracks)
       }
     })
   }
@@ -8633,7 +8634,7 @@ export default function App() {
       list.map((t) => (orderMap.has(t.id) ? { ...t, sortOrder: orderMap.get(t.id)! } : t))
     setTracks(apply)
     setFolderTracks(apply)
-    window.api.setTracksOrder(orderedIds)
+    platform.setTracksOrder(orderedIds)
   }
 
   function handlePlaylistTracksReorder(orderedIds: number[]) {
@@ -8641,7 +8642,7 @@ export default function App() {
     const byId = new Map(playlistTracks.map((t) => [t.id, t]))
     const reordered = orderedIds.map((id) => byId.get(id)).filter((t): t is Track => !!t)
     setPlaylistTracks(reordered)
-    window.api.reorderPlaylistTracks(viewingPlaylist.id, orderedIds)
+    platform.reorderPlaylistTracks(viewingPlaylist.id, orderedIds)
   }
 
   function handleFoldersReorder(orderedPaths: string[]) {
@@ -8653,7 +8654,7 @@ export default function App() {
       setSectionsSortBy('custom')
       setSectionsSortDir('asc')
     }
-    window.api.reorderFolders(orderedPaths)
+    platform.reorderFolders(orderedPaths)
   }
 
   function handlePlaylistsReorder(orderedIds: number[]) {
@@ -8665,7 +8666,7 @@ export default function App() {
       setPlaylistsSortBy('custom')
       setPlaylistsSortDir('asc')
     }
-    window.api.reorderPlaylists(orderedIds)
+    platform.reorderPlaylists(orderedIds)
   }
 
   function handleFoldersDragEnd(event: DragEndEvent) {
@@ -8722,7 +8723,7 @@ export default function App() {
   )
   const embeddedCurrentArt = useTrackArt(currentTrack?.filePath ?? null)
   const currentArtSrc = currentTrack?.customArtPath
-    ? window.api.getMediaUrl(currentTrack.customArtPath)
+    ? platform.getMediaUrl(currentTrack.customArtPath)
     : (embeddedCurrentArt ?? DEFAULT_ART)
 
   // A dropped-in file takes priority over an imported Now Playing track (only
@@ -8809,7 +8810,7 @@ export default function App() {
     }
   }, [appView, studioIsAligned, currentTrackId])
 
-  const studioDroppedFileSrc = studioDroppedTrack ? window.api.getMediaUrl(studioDroppedTrack.filePath) : null
+  const studioDroppedFileSrc = studioDroppedTrack ? platform.getMediaUrl(studioDroppedTrack.filePath) : null
   const studioIndependentPlayback = useFilePlayback(studioDroppedFileSrc, volume)
   const studioPlayback = studioIsAligned
     ? {
@@ -9399,7 +9400,7 @@ export default function App() {
     // embedded tags — the metadata prompt below only decides whether to
     // additionally write it to the file. Skipping that prompt must leave
     // this already-applied, metadata-free art in place, not undo it.
-    window.api.updateTrackArt(track.id, artPath, false).then(({ track: updated }) => {
+    platform.updateTrackArt(track.id, artPath, false).then(({ track: updated }) => {
       if (!updated) return
       applyTrackUpdateEverywhere(updated)
       setArtUpdatePrompt({ track: updated, artPath })
@@ -9415,7 +9416,7 @@ export default function App() {
     // nothing left to do, and importantly no metadata write to make.
     if (!saveToMetadata) return
 
-    window.api.updateTrackArt(track.id, artPath, true).then(({ track: updated, metadataWriteFailed }) => {
+    platform.updateTrackArt(track.id, artPath, true).then(({ track: updated, metadataWriteFailed }) => {
       if (!updated) return
       applyTrackUpdateEverywhere(updated)
       // Mirrors applyPendingTagUpdate's own failedIds notice — the app-side
@@ -9471,14 +9472,14 @@ export default function App() {
       setPlaylistPickerFolderTracks((prev) =>
         prev.map((t) => (t.id === currentTrack.id ? { ...t, lastPlayedAt: playedAt } : t))
       )
-      window.api.markPlayed(currentTrack.id).then(() => {
+      platform.markPlayed(currentTrack.id).then(() => {
         if (activeSectionRef.current === 'recent') {
-          window.api.getRecentlyPlayed().then(setRecentTracks)
+          platform.getRecentlyPlayed().then(setRecentTracks)
         }
       })
     }
 
-    const mediaUrl = window.api.getMediaUrl(currentTrack.filePath)
+    const mediaUrl = platform.getMediaUrl(currentTrack.filePath)
     if (!isRestoring) {
       // Stream straight from the media:// protocol instead of buffering the
       // whole file first — playback can start as soon as enough has arrived,
@@ -9758,19 +9759,19 @@ export default function App() {
   ])
 
   useEffect(() => {
-    return window.api.onMediaPlayPause(() => {
+    return platform.onMediaPlayPause(() => {
       if (nowPlayingTrackRef.current) nowPlayingToggleRef.current()
     })
   }, [])
 
   useEffect(() => {
-    return window.api.onMediaNextTrack(() => {
+    return platform.onMediaNextTrack(() => {
       if (nowPlayingTrackRef.current) nowPlayingNextRef.current()
     })
   }, [])
 
   useEffect(() => {
-    return window.api.onMediaPrevTrack(() => {
+    return platform.onMediaPrevTrack(() => {
       if (nowPlayingTrackRef.current) nowPlayingPrevRef.current()
     })
   }, [])
@@ -9845,7 +9846,7 @@ export default function App() {
 
   function toggleTrackFavorite(track: Track) {
     const nextFavorite = track.favorite ? false : true
-    window.api.setTrackFavorite(track.id, nextFavorite).then((updated) => {
+    platform.setTrackFavorite(track.id, nextFavorite).then((updated) => {
       if (!updated) return
       applyTrackUpdateEverywhere(updated)
     })
@@ -9909,7 +9910,7 @@ export default function App() {
     if (!job) return
     keyDetectionBusyRef.current = true
     try {
-      const res = await fetch(window.api.getMediaUrl(job.filePath))
+      const res = await fetch(platform.getMediaUrl(job.filePath))
       const arrayBuffer = await res.arrayBuffer()
       if (!keyDetectionDecodeCtxRef.current) {
         keyDetectionDecodeCtxRef.current = new AudioContext()
@@ -9930,7 +9931,7 @@ export default function App() {
       })
 
       if (result) {
-        const updated = await window.api.setDetectedKey(job.id, result.key, result.keySignature)
+        const updated = await platform.setDetectedKey(job.id, result.key, result.keySignature)
         if (updated) applyDetectedKey(updated)
       }
     } catch (err) {
@@ -10183,7 +10184,7 @@ export default function App() {
   }
 
   async function handleAddFolder() {
-    const folder = await window.api.selectFolder()
+    const folder = await platform.selectFolder()
     if (!folder) return
     setPendingFolderPath(folder)
   }
@@ -10196,14 +10197,14 @@ export default function App() {
       const result = await window.api.playDroppedFile(filePath)
       if (!result?.track) return
       if (!result.track.inLibrary) {
-        await window.api.setTrackInLibrary(result.track.id, true)
+        await platform.setTrackInLibrary(result.track.id, true)
       }
       if (result.inserted) {
         enqueueKeyDetection([{ id: result.track.id, filePath: result.track.filePath }])
       }
       await Promise.all([
-        window.api.getTracks().then(setTracks),
-        window.api.getRecentlyPlayed().then(setRecentTracks),
+        platform.getTracks().then(setTracks),
+        platform.getRecentlyPlayed().then(setRecentTracks),
       ])
     } catch (err) {
       console.error(`Failed to add file ${filePath} to the library:`, err)
@@ -10218,9 +10219,9 @@ export default function App() {
     if (!folder) return
     setScanning(true)
     try {
-      const result = await window.api.scanLibrary(folder, !includeInLibrary)
+      const result = await platform.scanLibrary(folder, !includeInLibrary)
       setTracks(result.tracks)
-      await window.api.getFolders().then(setFolders)
+      await platform.getFolders().then(setFolders)
       enqueueKeyDetection(result.newTracks)
     } catch (err) {
       console.error(`Failed to scan folder ${folder}:`, err)
@@ -10662,7 +10663,7 @@ export default function App() {
     return await loadImageElement(src)
 
     async function toBlobUrl(filePath: string) {
-      const res = await fetch(window.api.getMediaUrl(filePath))
+      const res = await fetch(platform.getMediaUrl(filePath))
       if (!res.ok) throw new Error(`Failed to read image (${res.status})`)
       const blob = await res.blob()
       const objectUrl = URL.createObjectURL(blob)
@@ -10959,7 +10960,7 @@ export default function App() {
             {imageViewerPath ? (
               <img
                 ref={imageViewerImgRef}
-                src={imageEditedSrc ?? window.api.getMediaUrl(imageViewerPath)}
+                src={imageEditedSrc ?? platform.getMediaUrl(imageViewerPath)}
                 className={`image-viewer-img${imageZoom > 1 ? ' image-viewer-img-zoomed' : ''}`}
                 alt=""
                 draggable={false}
@@ -11039,7 +11040,7 @@ export default function App() {
             {videoViewerPath && videoPlayableSrc ? (
               <video
                 ref={videoRef}
-                src={window.api.getMediaUrl(videoPlayableSrc)}
+                src={platform.getMediaUrl(videoPlayableSrc)}
                 className="video-viewer-video"
                 loop
                 onClick={toggleVideoPlay}
@@ -11062,7 +11063,7 @@ export default function App() {
                   videoFallbackAppliedRef.current = true
                   window.api.ensurePlayableVideo?.(videoViewerPath).then((playablePath) => {
                     if (!playablePath || videoRef.current !== video) return
-                    video.src = window.api.getMediaUrl(playablePath)
+                    video.src = platform.getMediaUrl(playablePath)
                     video.load()
                     video.play().catch((err) => console.error('Failed to play transcoded video fallback:', err))
                   })
@@ -11273,7 +11274,7 @@ export default function App() {
                 hasCustomArt={!!currentTrack?.customArtPath}
                 onSelectPreset={(filePath) => updateCurrentTrackArt(filePath)}
                 onUploadCustom={() => {
-                  window.api.selectImage().then((filePath) => {
+                  platform.selectImage().then((filePath) => {
                     if (filePath) updateCurrentTrackArt(filePath)
                   })
                 }}
@@ -12161,7 +12162,7 @@ export default function App() {
                       onPlay={() => playTrack(track.id)}
                       onRemove={() => {
                         setRecentTracks((prev) => prev.filter((t) => t.id !== track.id))
-                        window.api.removeFromRecentlyPlayed(track.id)
+                        platform.removeFromRecentlyPlayed(track.id)
                       }}
                       onOpenInStudio={() => {
                         loadFileIntoStudio(track.filePath)
@@ -12286,7 +12287,7 @@ export default function App() {
                   <div className="folder-grid">
                     <NewPlaylistTile
                       onCreate={() =>
-                        window.api.createPlaylist('New Playlist').then((created) => {
+                        platform.createPlaylist('New Playlist').then((created) => {
                           setPlaylists((prev) => [created, ...prev])
                           setViewingPlaylist(created)
                         })
@@ -12309,10 +12310,10 @@ export default function App() {
                                 dragHandle={dragHandle}
                                 onOpen={() => setViewingPlaylist(playlist)}
                                 onRename={(name) =>
-                                  window.api.renamePlaylist(playlist.id, name).then(setPlaylists)
+                                  platform.renamePlaylist(playlist.id, name).then(setPlaylists)
                                 }
                                 onDelete={() =>
-                                  window.api.deletePlaylist(playlist.id).then(setPlaylists)
+                                  platform.deletePlaylist(playlist.id).then(setPlaylists)
                                 }
                               />
                             )}
@@ -12474,26 +12475,26 @@ export default function App() {
                               dragHandle={dragHandle}
                               onOpen={() => setViewingFolder(folder)}
                               onRename={(name) =>
-                                window.api.renameFolder(folder.path, name).then(setFolders)
+                                platform.renameFolder(folder.path, name).then(setFolders)
                               }
                               onRemove={() =>
-                                window.api.removeFolder(folder.path).then(({ folders, tracks }) => {
+                                platform.removeFolder(folder.path).then(({ folders, tracks }) => {
                                   setFolders(folders)
                                   setTracks(tracks)
                                 })
                               }
                               onSelectArt={(filePath) =>
-                                window.api.updateFolderArt(folder.path, filePath).then(setFolders)
+                                platform.updateFolderArt(folder.path, filePath).then(setFolders)
                               }
                               onUploadArt={() => {
-                                window.api.selectImage().then((filePath) => {
+                                platform.selectImage().then((filePath) => {
                                   if (filePath) {
-                                    window.api.updateFolderArt(folder.path, filePath).then(setFolders)
+                                    platform.updateFolderArt(folder.path, filePath).then(setFolders)
                                   }
                                 })
                               }}
                               onRemoveArt={() =>
-                                window.api.updateFolderArt(folder.path, null).then(setFolders)
+                                platform.updateFolderArt(folder.path, null).then(setFolders)
                               }
                             />
                           )}

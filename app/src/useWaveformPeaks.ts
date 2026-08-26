@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { platform } from './platform'
 
 const BAR_COUNT = 96
 
@@ -30,7 +31,7 @@ export function computePeaksFromBuffer(buffer: AudioBuffer, barCount = BAR_COUNT
 }
 
 async function extractPeaks(filePath: string): Promise<number[]> {
-  const res = await fetch(window.api.getMediaUrl(filePath))
+  const res = await fetch(platform.getMediaUrl(filePath))
   const arrayBuffer = await res.arrayBuffer()
   if (!decodeCtx) decodeCtx = new AudioContext()
   const buffer = await decodeCtx.decodeAudioData(arrayBuffer)
