@@ -3461,17 +3461,37 @@ function TrackRow({
       {import.meta.env.VOLURE_MOBILE ? (
         <>
           {/* Touch: a tap anywhere on the row plays the track. Inline tag
-              editing is desktop-only — it fires on a stray tap otherwise. */}
-          <td className="tag-cell" onClick={() => onPlay(track.id)}>
+              editing is desktop-only — it fires on a stray tap otherwise.
+              Duration rides along in the subtitle, like a phone music app. */}
+          <td className="tag-cell m-title" onClick={() => onPlay(track.id)}>
             {track.title || 'Unknown title'}
           </td>
-          <td className="tag-cell" onClick={() => onPlay(track.id)}>
-            {track.artist || 'Unknown artist'}
+          <td className="tag-cell m-sub" onClick={() => onPlay(track.id)}>
+            {(track.artist || 'Unknown artist')}
+            {track.duration ? ` (${formatTime(track.duration)})` : ''}
           </td>
-          <td className="tag-cell" onClick={() => onPlay(track.id)}>
-            {track.album || ''}
+          <td className="m-menu">
+            {extraColumn ? (
+              <input
+                type="checkbox"
+                className="extra-checkbox"
+                checked={extraColumn.isChecked(track)}
+                onChange={() => extraColumn.onToggle(track)}
+              />
+            ) : (
+              <button
+                type="button"
+                className="m-menu-btn"
+                aria-label="Track options"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onRowContextMenu?.(track, e)
+                }}
+              >
+                <MoreIcon />
+              </button>
+            )}
           </td>
-          <td onClick={() => onPlay(track.id)}>{track.key || ''}</td>
         </>
       ) : (
         <>
@@ -3491,18 +3511,18 @@ function TrackRow({
             value={track.key}
             onSave={(key) => onSaveTag(track, { key })}
           />
+          <td>{formatTime(track.duration)}</td>
+          {extraColumn && (
+            <td className="extra-column-cell">
+              <input
+                type="checkbox"
+                className="extra-checkbox"
+                checked={extraColumn.isChecked(track)}
+                onChange={() => extraColumn.onToggle(track)}
+              />
+            </td>
+          )}
         </>
-      )}
-      <td>{formatTime(track.duration)}</td>
-      {extraColumn && (
-        <td className="extra-column-cell">
-          <input
-            type="checkbox"
-            className="extra-checkbox"
-            checked={extraColumn.isChecked(track)}
-            onChange={() => extraColumn.onToggle(track)}
-          />
-        </td>
       )}
     </tr>
   )
@@ -5765,6 +5785,41 @@ const PlayKeyboard = forwardRef<
     </div>
   )
 })
+
+const SECTION_TABS: { id: Section; label: string }[] = [
+  { id: 'songs', label: 'Songs' },
+  { id: 'recent', label: 'Recently Played' },
+  { id: 'sections', label: 'Sections' },
+  { id: 'playlists', label: 'Playlists' },
+  { id: 'favorites', label: 'Favorites' },
+  { id: 'advanced', label: 'Advanced' },
+]
+
+// The library section switcher. Desktop renders it inside the sidebar column;
+// mobile renders it as a horizontal strip across the top of the library.
+function SectionTabs({
+  activeSection,
+  onSelect,
+  className,
+}: {
+  activeSection: Section
+  onSelect: (section: Section) => void
+  className?: string
+}) {
+  return (
+    <nav className={className}>
+      {SECTION_TABS.map(({ id, label }) => (
+        <button
+          key={id}
+          className={activeSection === id ? 'active' : ''}
+          onClick={() => onSelect(id)}
+        >
+          {label}
+        </button>
+      ))}
+    </nav>
+  )
+}
 
 export default function App() {
   const [tracks, setTracks] = useState<Track[]>([])
@@ -8422,6 +8477,12 @@ export default function App() {
 
   function handleRowContextMenu(track: Track, e: React.MouseEvent) {
     setTrackContextMenu({ track, x: e.clientX, y: e.clientY, section: activeSection })
+  }
+
+  function selectSection(section: Section) {
+    setActiveSection(section)
+    if (section === 'sections') setViewingFolder(null)
+    if (section === 'playlists') setViewingPlaylist(null)
   }
 
   async function detectKeyFromFile(id: number, filePath: string) {
@@ -11356,7 +11417,7 @@ export default function App() {
             >
               {renderDeveloperOverlay('toolbar')}
               <div className="toolbar-left">
-                {appView === 'media' ? (
+                {appView === 'media' || import.meta.env.VOLURE_MOBILE ? (
                   <DeveloperEditableNode
                     id="sidebarToggleButton"
                     tag="button"
@@ -11462,61 +11523,30 @@ export default function App() {
             </header>
 
             <div className="body-row">
+              {import.meta.env.VOLURE_MOBILE && appView === 'media' && (
+                <SectionTabs
+                  className="section-tabs-mobile"
+                  activeSection={activeSection}
+                  onSelect={selectSection}
+                />
+              )}
+              {import.meta.env.VOLURE_MOBILE && sidebarOpen && (
+                <div className="sidebar-scrim" onClick={() => setSidebarOpen(false)} />
+              )}
               <aside
                 ref={(node) => {
                   developerNodeRefs.current.sidebar = node
                 }}
                 style={developerLayoutStyle('sidebar')}
-                className={`sidebar ${sidebarOpen || appView !== 'media' ? 'open' : ''}${
+                className={`sidebar ${
+                  sidebarOpen || (appView !== 'media' && !import.meta.env.VOLURE_MOBILE) ? 'open' : ''
+                }${
                   appView === 'play' ? ' sidebar-overlay sidebar-play' : appView === 'studio' ? ' sidebar-overlay' : ''
                 }`}
               >
                 {renderDeveloperOverlay('sidebar')}
-                {appView === 'media' && (
-                  <nav>
-                    <button
-                      className={activeSection === 'songs' ? 'active' : ''}
-                      onClick={() => setActiveSection('songs')}
-                    >
-                      Songs
-                    </button>
-                    <button
-                      className={activeSection === 'recent' ? 'active' : ''}
-                      onClick={() => setActiveSection('recent')}
-                    >
-                      Recently Played
-                    </button>
-                    <button
-                      className={activeSection === 'sections' ? 'active' : ''}
-                      onClick={() => {
-                        setActiveSection('sections')
-                        setViewingFolder(null)
-                      }}
-                    >
-                      Sections
-                    </button>
-                    <button
-                      className={activeSection === 'playlists' ? 'active' : ''}
-                      onClick={() => {
-                        setActiveSection('playlists')
-                        setViewingPlaylist(null)
-                      }}
-                    >
-                      Playlists
-                    </button>
-                    <button
-                      className={activeSection === 'favorites' ? 'active' : ''}
-                      onClick={() => setActiveSection('favorites')}
-                    >
-                      Favorites
-                    </button>
-                    <button
-                      className={activeSection === 'advanced' ? 'active' : ''}
-                      onClick={() => setActiveSection('advanced')}
-                    >
-                      Advanced
-                    </button>
-                  </nav>
+                {appView === 'media' && !import.meta.env.VOLURE_MOBILE && (
+                  <SectionTabs activeSection={activeSection} onSelect={selectSection} />
                 )}
                 {appView === 'studio' && (
                   <div className="studio-tabs">
@@ -11595,14 +11625,20 @@ export default function App() {
                 <nav className="app-view-nav">
                   <button
                     className={appView === 'media' ? 'active' : ''}
-                    onClick={() => setAppView('media')}
+                    onClick={() => {
+                      setAppView('media')
+                      setSidebarOpen(false)
+                    }}
                   >
                     Volure Home
                     {appView === 'media' && <CheckIcon />}
                   </button>
                   <button
                     className={appView === 'studio' ? 'active' : ''}
-                    onClick={() => setAppView('studio')}
+                    onClick={() => {
+                      setAppView('studio')
+                      setSidebarOpen(false)
+                    }}
                   >
                     Volure Studio
                     {appView === 'studio' && <CheckIcon />}
@@ -12554,6 +12590,17 @@ export default function App() {
               </>
             )}
               </main>
+              {import.meta.env.VOLURE_MOBILE && appView === 'media' && (
+                <button
+                  type="button"
+                  className={`mobile-shuffle-fab${shuffle ? ' active' : ''}`}
+                  onClick={toggleShuffle}
+                  aria-pressed={shuffle}
+                  title="Shuffle"
+                >
+                  <ShuffleIcon />
+                </button>
+              )}
             </div>
           </>
         )}

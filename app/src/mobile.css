@@ -1,14 +1,19 @@
 /* Mobile (Capacitor / Android) layout overrides.
  *
- * Every rule is scoped under `.app.mobile`, which App.tsx only adds when the
- * build target is mobile (import.meta.env.VOLURE_MOBILE). This file is loaded
- * via a dynamic import that folds away entirely on desktop, so nothing here
- * ever touches the desktop build.
+ * Every rule is scoped under `.app.mobile`, a class App.tsx only sets on the
+ * mobile build target (import.meta.env.VOLURE_MOBILE). Inert on desktop.
  *
- * Goal of this pass: make Volure Home read like an ordinary phone music
- * player — a plain dark background, a top row of section tabs, a full-width
- * search field, single-line track rows (art · title · artist/duration), and a
- * compact bottom player. */
+ * Target: Volure Home laid out like an ordinary phone music player — a light
+ * dark-grey ground, section tabs across the top, a full-width search field,
+ * single-line track rows (art · title · artist (duration) · ⋮), a shuffle FAB,
+ * and a compact bottom player with no seek bar. The Home / Studio switcher
+ * lives in a slide-in drawer behind the top-left button. */
+
+:root {
+  --m-ground: #2c2c2e;
+  --m-panel: #242426;
+  --m-rule: rgba(255, 255, 255, 0.08);
+}
 
 /* No blue flash on tap. */
 .app.mobile,
@@ -16,10 +21,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ---- background: plain carbon black instead of the wallpaper ---- */
+/* ---- background: flat light-dark-grey instead of the wallpaper ---- */
 .app.mobile .background {
   background-image: none;
-  background-color: #0b0b0c;
+  background-color: var(--m-ground);
   filter: none;
 }
 .app.mobile .background-night,
@@ -33,6 +38,7 @@
   align-items: center;
   gap: 6px;
   padding: calc(env(safe-area-inset-top) + 8px) 14px 8px;
+  background: var(--m-panel);
 }
 
 .app.mobile .toolbar-left {
@@ -55,75 +61,117 @@
   margin-top: 2px;
 }
 
+/* underline search field with a leading magnifier, like the reference */
 .app.mobile .toolbar-actions .search {
   width: 100%;
   flex: 1 1 auto;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a3' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 4px center;
+  background-size: 18px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 0;
+  padding: 8px 6px 8px 32px;
+  backdrop-filter: none;
 }
 
-/* ---- section nav: vertical sidebar -> horizontal top tab strip ---- */
+/* ---- section tabs: horizontal strip across the top of the library ---- */
 .app.mobile .body-row {
   display: block;
 }
 
-.app.mobile .sidebar,
-.app.mobile .sidebar.open {
+.app.mobile .section-tabs-mobile {
   position: absolute;
   inset: 0 0 auto 0;
-  width: auto;
-  height: 38px;
-  flex-direction: row;
   z-index: 6;
-  overflow: hidden;
-  background: #0b0b0c;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: none;
-}
-
-.app.mobile .sidebar nav {
-  flex-direction: row;
+  display: flex;
   align-items: stretch;
-  width: 100%;
-  height: 100%;
-  padding: 0 6px;
-  gap: 0;
+  height: 40px;
+  padding: 0 4px;
+  background: var(--m-ground);
+  border-bottom: 1px solid var(--m-rule);
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
 }
-.app.mobile .sidebar nav::-webkit-scrollbar {
+.app.mobile .section-tabs-mobile::-webkit-scrollbar {
   display: none;
 }
-
-.app.mobile .sidebar nav button {
+.app.mobile .section-tabs-mobile button {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  font-size: 12px;
-  padding: 0 12px;
-  border-radius: 0;
-  border-bottom: 2px solid transparent;
-  color: rgba(255, 255, 255, 0.55);
-}
-.app.mobile .sidebar nav button.active {
   background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  padding: 0 12px;
+  cursor: pointer;
+}
+.app.mobile .section-tabs-mobile button.active {
   color: #fff;
   border-bottom-color: #fff;
 }
 
-/* Home / Studio / Play switch — not used on mobile (Home is the only view). */
-.app.mobile .app-view-nav {
-  display: none;
+/* ---- the drawer: Home / Studio switcher (+ Studio tool tabs) ---- */
+.app.mobile .sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  max-width: 82vw;
+  height: auto;
+  flex-direction: column;
+  z-index: 25;
+  overflow-y: auto;
+  background: var(--m-panel);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.22s ease;
+  padding: calc(env(safe-area-inset-top) + 20px) 0 20px;
+}
+.app.mobile .sidebar.open {
+  transform: translateX(0);
+}
+.app.mobile .sidebar.open ~ .library,
+.app.mobile .sidebar ~ .library {
+  left: 0;
 }
 
-/* ---- library body sits below the tab strip ---- */
+.app.mobile .sidebar-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.app.mobile .app-view-nav {
+  display: block;
+  margin: 0;
+  border-top: none;
+  padding: 0 10px;
+}
+.app.mobile .app-view-nav button,
+.app.mobile .sidebar .studio-tabs button {
+  width: 100%;
+  font-size: 14px;
+  padding: 12px 12px;
+}
+.app.mobile .sidebar .studio-tabs {
+  width: 100%;
+  padding: 0 10px 10px;
+}
+
+/* ---- library body sits below the section-tab strip ---- */
 .app.mobile .library {
-  top: 38px;
+  top: 40px;
   left: 0;
   padding: 0 12px calc(env(safe-area-inset-bottom));
-}
-.app.mobile .sidebar ~ .library,
-.app.mobile .sidebar.open ~ .library {
-  left: 0;
 }
 
 /* ---- track list: table -> single-line rows ---- */
@@ -139,8 +187,8 @@
 .app.mobile .track-table thead tr {
   display: flex;
   align-items: center;
-  padding: 6px 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 2px;
+  border-bottom: 1px solid var(--m-rule);
 }
 .app.mobile .track-table thead th {
   display: none;
@@ -160,12 +208,12 @@
 
 .app.mobile .track-table tbody tr {
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) auto;
+  grid-template-columns: 48px minmax(0, 1fr) 36px;
   grid-template-rows: auto auto;
   align-items: center;
   column-gap: 12px;
-  padding: 7px 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .app.mobile .track-table tbody td {
@@ -180,43 +228,51 @@
 .app.mobile .track-table td.row-select-cell {
   display: none;
 }
-
 .app.mobile .track-table td.track-art-cell {
   grid-row: 1 / 3;
   grid-column: 1;
 }
-
-/* nth-child counts every <td>, hidden or not:
-   1 select · 2 art · 3 title · 4 artist · 5 album · 6 key · 7 duration */
-.app.mobile .track-table tbody td:nth-child(3) {
+.app.mobile .track-table td.track-art-cell .art-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+}
+.app.mobile .track-table td.m-title {
   grid-column: 2;
   grid-row: 1;
   font-size: 15px;
   color: #fff;
 }
-.app.mobile .track-table tbody td:nth-child(4) {
+.app.mobile .track-table td.m-sub {
   grid-column: 2;
   grid-row: 2;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.5);
 }
-.app.mobile .track-table tbody td:nth-child(5),
-.app.mobile .track-table tbody td:nth-child(6) {
-  display: none;
-}
-.app.mobile .track-table tbody td:nth-child(7) {
+.app.mobile .track-table td.m-menu {
   grid-column: 3;
   grid-row: 1 / 3;
   align-self: center;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.45);
+  overflow: visible;
+}
+.app.mobile .track-table td.m-menu .m-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
 }
 
-.app.mobile .track-table tr.active td:nth-child(3) {
+.app.mobile .track-table tr.active td.m-title {
   color: #f4c77b;
 }
 
-/* No inline tag editing on touch — drop the desktop hover affordance so a tap
+/* No inline tag editing on touch — kill the desktop hover affordance so a tap
    doesn't leave a sticky grey box on the last cell touched. */
 .app.mobile .track-table .tag-cell {
   cursor: default;
@@ -240,47 +296,73 @@
   gap: 12px;
 }
 
-/* ---- bottom player: compact, stacked, no volume/queue ---- */
-.app.mobile .playback-bar {
+/* ---- shuffle FAB ---- */
+.app.mobile .mobile-shuffle-fab {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 15;
+  width: 52px;
+  height: 52px;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 6px;
-  padding: 8px 14px calc(8px + env(safe-area-inset-bottom));
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #d3791e;
+  color: #1a1200;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+.app.mobile .mobile-shuffle-fab svg {
+  width: 24px;
+  height: 24px;
+}
+.app.mobile .mobile-shuffle-fab.active {
+  background: #f2a44b;
 }
 
+/* ---- bottom player: one compact row, no seek bar, no volume/queue ---- */
+.app.mobile .playback-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: var(--m-panel);
+}
 .app.mobile .now-playing {
+  flex: 1 1 auto;
+  min-width: 0;
   gap: 10px;
 }
 .app.mobile .now-playing-art {
   width: 42px;
   height: 42px;
 }
-
-/* scrub sits above the transport buttons */
 .app.mobile .transport {
-  width: 100%;
-  flex-direction: column-reverse;
-  gap: 8px;
+  flex: 0 0 auto;
+  flex-direction: row;
+  gap: 0;
 }
 .app.mobile .transport-buttons {
-  width: 100%;
-  justify-content: space-around;
-  gap: 4px;
+  gap: 2px;
 }
 .app.mobile .transport-buttons button {
-  padding: 6px 10px;
+  padding: 6px;
 }
 .app.mobile .transport-buttons button svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+}
+/* shuffle lives in the FAB now; loop stays hidden to keep the row short */
+.app.mobile .transport-buttons button:first-child,
+.app.mobile .transport-buttons button:last-child {
+  display: none;
 }
 .app.mobile .scrub {
-  width: 100%;
-  gap: 8px;
-  font-size: 10px;
+  display: none;
 }
-
 .app.mobile .playback-bar-right {
   display: none;
 }
