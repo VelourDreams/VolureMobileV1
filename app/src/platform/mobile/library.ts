@@ -6,13 +6,21 @@ import type { Track, TrackArt } from '../types'
 import * as db from './db'
 import { VolureLibrary, type MediaStoreTrack } from './plugins'
 
+// MediaStore stores the literal string "<unknown>" for missing artist/album
+// tags rather than leaving them null.
+function clean(value: string | null | undefined): string | null {
+  const trimmed = value?.trim()
+  if (!trimmed || trimmed === '<unknown>') return null
+  return trimmed
+}
+
 function toUpsert(r: MediaStoreTrack) {
   return {
     filePath: r.uri,
-    title: r.title || null,
-    artist: r.artist || null,
-    album: r.album || null,
-    genre: r.genre || null,
+    title: clean(r.title),
+    artist: clean(r.artist),
+    album: clean(r.album),
+    genre: clean(r.genre),
     trackNo: r.trackNo || null,
     // MediaStore reports milliseconds; Track.duration is seconds (matches the
     // desktop music-metadata value).

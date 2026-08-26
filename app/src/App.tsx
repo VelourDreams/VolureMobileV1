@@ -42,6 +42,11 @@ import { PITCH_SEMITONES_MIN, PITCH_SEMITONES_MAX, PITCH_SHIFT_BUFFER_SIZE } fro
 import { DotLottie } from '@lottiefiles/dotlottie-web'
 import dotlottieWasmUrl from '@lottiefiles/dotlottie-web/dotlottie-player.wasm?url'
 import './App.css'
+// Mobile (Capacitor) layout overrides. Every rule is scoped under `.app.mobile`
+// — a class App only sets on the mobile build target — so this is inert on
+// desktop. Imported statically (not gated) so the mobile build never flashes
+// the desktop layout before the stylesheet loads.
+import './mobile.css'
 
 // Points the player at its WASM binary via Vite's own asset pipeline instead
 // of the library's default (a jsDelivr/unpkg fetch), which would otherwise
@@ -3180,7 +3185,7 @@ function TrackTable({
   emptyMessage,
   extraColumn,
   onRowContextMenu,
-  onReorder,
+  onReorder: onReorderProp,
   getCustomOrder,
 }: {
   tracks: Track[]
@@ -3210,6 +3215,10 @@ function TrackTable({
   // (per-playlist) position-derived order instead.
   getCustomOrder?: (track: Track) => number
 }) {
+  // Drag-to-reorder is disabled on touch: the rows would need
+  // `touch-action: none`, which eats vertical scrolling of the list.
+  const onReorder = import.meta.env.VOLURE_MOBILE ? undefined : onReorderProp
+
   const sortedTracks = useMemo(() => {
     if (sortBy === 'extra' && extraColumn) {
       const dir = sortDir === 'desc' ? -1 : 1
@@ -3449,22 +3458,41 @@ function TrackRow({
       >
         <TrackArtThumb track={track} size={46} />
       </td>
-      <EditableCell
-        value={track.title ?? ''}
-        onSave={(title) => onSaveTag(track, { title })}
-      />
-      <EditableCell
-        value={track.artist ?? ''}
-        onSave={(artist) => onSaveTag(track, { artist })}
-      />
-      <EditableCell
-        value={track.album ?? ''}
-        onSave={(album) => onSaveTag(track, { album })}
-      />
-      <KeyCell
-        value={track.key}
-        onSave={(key) => onSaveTag(track, { key })}
-      />
+      {import.meta.env.VOLURE_MOBILE ? (
+        <>
+          {/* Touch: a tap anywhere on the row plays the track. Inline tag
+              editing is desktop-only — it fires on a stray tap otherwise. */}
+          <td className="tag-cell" onClick={() => onPlay(track.id)}>
+            {track.title || 'Unknown title'}
+          </td>
+          <td className="tag-cell" onClick={() => onPlay(track.id)}>
+            {track.artist || 'Unknown artist'}
+          </td>
+          <td className="tag-cell" onClick={() => onPlay(track.id)}>
+            {track.album || ''}
+          </td>
+          <td onClick={() => onPlay(track.id)}>{track.key || ''}</td>
+        </>
+      ) : (
+        <>
+          <EditableCell
+            value={track.title ?? ''}
+            onSave={(title) => onSaveTag(track, { title })}
+          />
+          <EditableCell
+            value={track.artist ?? ''}
+            onSave={(artist) => onSaveTag(track, { artist })}
+          />
+          <EditableCell
+            value={track.album ?? ''}
+            onSave={(album) => onSaveTag(track, { album })}
+          />
+          <KeyCell
+            value={track.key}
+            onSave={(key) => onSaveTag(track, { key })}
+          />
+        </>
+      )}
       <td>{formatTime(track.duration)}</td>
       {extraColumn && (
         <td className="extra-column-cell">
@@ -4583,11 +4611,17 @@ function loadVolume(): number {
   }
 }
 
-const SORT_STORAGE_KEY = 'volure:sort'
+// Mobile keeps its own sort preference so its "newest modified first" default
+// isn't pre-empted by a 'recent' value an earlier desktop-style build stored.
+const SORT_STORAGE_KEY = import.meta.env.VOLURE_MOBILE ? 'volure:sort:mobile' : 'volure:sort'
 const SORT_OPTIONS: SortOption[] = ['title', 'artist', 'album', 'key', 'duration', 'dateAdded', 'dateModified', 'recent', 'favorite', 'custom']
 
 function loadSort(): { sortBy: SortOption; sortDir: SortDir } {
-  const fallback: { sortBy: SortOption; sortDir: SortDir } = { sortBy: 'recent', sortDir: 'asc' }
+  // Mobile defaults to newest-modified first (matches a phone music player);
+  // desktop keeps its "Most Recent" default.
+  const fallback: { sortBy: SortOption; sortDir: SortDir } = import.meta.env.VOLURE_MOBILE
+    ? { sortBy: 'dateModified', sortDir: 'desc' }
+    : { sortBy: 'recent', sortDir: 'asc' }
   try {
     const raw = localStorage.getItem(SORT_STORAGE_KEY)
     if (!raw) return fallback
@@ -10852,7 +10886,7 @@ export default function App() {
   return (
     <div
       ref={appRootRef}
-      className={`app${isDragging ? ' drag-active' : ''}${nightMode ? ' night-mode' : ''}${appView === 'studio' && !fullScreen ? ' studio-mode' : ''}${
+      className={`app${import.meta.env.VOLURE_MOBILE ? ' mobile' : ''}${isDragging ? ' drag-active' : ''}${nightMode ? ' night-mode' : ''}${appView === 'studio' && !fullScreen ? ' studio-mode' : ''}${
         developerMode ? ' developer-mode' : ''
       }`}
       onDragEnter={handleDragEnter}
@@ -11406,19 +11440,23 @@ export default function App() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                   />
-                  <button
-                    type="button"
-                    className="toolbar-add-file-btn"
-                    onClick={handleAddAudioFile}
-                    disabled={scanning}
-                    title="Add audio file to library"
-                    aria-label="Add audio file to library"
-                  >
-                    <PlusIcon />
-                  </button>
-                  <button className="btn-primary" onClick={handleAddFolder} disabled={scanning}>
-                    {scanning ? 'Scanning...' : 'Add Folder'}
-                  </button>
+                  {!import.meta.env.VOLURE_MOBILE && (
+                    <>
+                      <button
+                        type="button"
+                        className="toolbar-add-file-btn"
+                        onClick={handleAddAudioFile}
+                        disabled={scanning}
+                        title="Add audio file to library"
+                        aria-label="Add audio file to library"
+                      >
+                        <PlusIcon />
+                      </button>
+                      <button className="btn-primary" onClick={handleAddFolder} disabled={scanning}>
+                        {scanning ? 'Scanning...' : 'Add Folder'}
+                      </button>
+                    </>
+                  )}
                 </div>
               )}
             </header>
@@ -11569,13 +11607,15 @@ export default function App() {
                     Volure Studio
                     {appView === 'studio' && <CheckIcon />}
                   </button>
-                  <button
-                    className={appView === 'play' ? 'active' : ''}
-                    onClick={() => setAppView('play')}
-                  >
-                    Volure Play
-                    {appView === 'play' && <CheckIcon />}
-                  </button>
+                  {!import.meta.env.VOLURE_MOBILE && (
+                    <button
+                      className={appView === 'play' ? 'active' : ''}
+                      onClick={() => setAppView('play')}
+                    >
+                      Volure Play
+                      {appView === 'play' && <CheckIcon />}
+                    </button>
+                  )}
                 </nav>
               </aside>
 
@@ -12019,6 +12059,7 @@ export default function App() {
                   
                 </div>
               </main>
+              {!import.meta.env.VOLURE_MOBILE && (
               <main
                 ref={(node) => {
                   developerNodeRefs.current.play = node
@@ -12115,6 +12156,7 @@ export default function App() {
                   onPerformanceNote={handlePerformanceNote}
                 />
               </main>
+              )}
               <main
                 ref={(node) => {
                   developerNodeRefs.current.library = node
