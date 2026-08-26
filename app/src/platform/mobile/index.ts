@@ -1,15 +1,15 @@
-// Android implementation of the platform boundary — STUB.
+// Android implementation of the platform boundary.
 //
-// Every method throws for now. This file exists so `npm run build:mobile`
-// compiles and the build plumbing (Vite alias, Capacitor config) can be
-// verified before the real implementation lands. Phases 3–5 replace these
-// one group at a time:
-//   - library / playlists  -> @capacitor-community/sqlite      (mobile/db.ts)
-//   - syncLibrary / art    -> MediaStore via a custom plugin   (mobile/library.ts)
-//   - getMediaUrl          -> Capacitor.convertFileSrc(content://…)
-//   - onMedia* transport   -> events from the playback service (mobile/nowplaying.ts)
+// Library / playlist / folder methods are wired to SQLite (./db.ts). The rest
+// still throw — later phases replace them:
+//   - syncLibrary / getArt        -> MediaStore via a custom plugin (Phase 4)
+//   - getMediaUrl                 -> Capacitor.convertFileSrc(content://…)   (Phase 4)
+//   - listBackgroundImages        -> bundled assets                          (Phase 4)
+//   - selectImage                 -> @capacitor/camera photo picker          (Phase 4)
+//   - onMedia* transport          -> events from the playback service        (Phase 5)
 
 import type { Platform } from '../types'
+import * as db from './db'
 
 function notReady(method: string): never {
   throw new Error(
@@ -21,49 +21,102 @@ export const platform: Platform = {
   target: 'mobile',
 
   // ---- library: tracks ----
-  getTracks: () => notReady('getTracks'),
-  getTracksInFolder: () => notReady('getTracksInFolder'),
-  searchTracks: () => notReady('searchTracks'),
+  getTracks: () => db.getAllTracks(),
+  getTracksInFolder: (folderPath) => db.getTracksInFolder(folderPath),
+  searchTracks: (query) => db.searchTracks(query),
   scanLibrary: () => notReady('scanLibrary'),
   syncLibrary: () => notReady('syncLibrary'),
-  setTrackInLibrary: () => notReady('setTrackInLibrary'),
-  setTrackFavorite: () => notReady('setTrackFavorite'),
-  setTracksOrder: () => notReady('setTracksOrder'),
-  markPlayed: () => notReady('markPlayed'),
-  getRecentlyPlayed: () => notReady('getRecentlyPlayed'),
-  removeFromRecentlyPlayed: () => notReady('removeFromRecentlyPlayed'),
-  updateTags: () => notReady('updateTags'),
-  updateTagsBulk: () => notReady('updateTagsBulk'),
-  updateTrackArt: () => notReady('updateTrackArt'),
-  setDetectedKey: () => notReady('setDetectedKey'),
+  setTrackInLibrary: async (id, inLibrary) => {
+    await db.setTrackInLibrary(id, inLibrary ? 1 : 0)
+    return (await db.getTrackById(id)) ?? null
+  },
+  setTrackFavorite: async (id, favorite) => {
+    await db.setTrackFavorite(id, favorite ? 1 : 0)
+    return (await db.getTrackById(id)) ?? null
+  },
+  setTracksOrder: async (orderedIds) => {
+    await db.setTracksOrder(orderedIds)
+    return db.getAllTracks()
+  },
+  markPlayed: (id) => db.markPlayed(id),
+  getRecentlyPlayed: () => db.getRecentlyPlayed(),
+  removeFromRecentlyPlayed: async (id) => {
+    await db.removeFromRecentlyPlayed(id)
+    return db.getRecentlyPlayed()
+  },
+  updateTags: async (id, tags) => {
+    await db.updateTrackTags(id, tags)
+    return db.getAllTracks()
+  },
+  updateTagsBulk: async (ids, tags) => {
+    await db.updateTracksTags(ids, tags)
+    return { tracks: await db.getAllTracks(), failedIds: [] }
+  },
+  updateTrackArt: async (id, artPath) => {
+    await db.updateTrackArt(id, artPath)
+    return { track: (await db.getTrackById(id)) ?? null, metadataWriteFailed: false }
+  },
+  setDetectedKey: async (id, key, keySignature, force) => {
+    return (await db.setDetectedKey(id, key, keySignature, force)) ?? null
+  },
 
   // ---- library: folders / sections ----
-  getFolders: () => notReady('getFolders'),
-  renameFolder: () => notReady('renameFolder'),
-  updateFolderArt: () => notReady('updateFolderArt'),
-  removeFolder: () => notReady('removeFolder'),
-  reorderFolders: () => notReady('reorderFolders'),
+  getFolders: () => db.getFolders(),
+  renameFolder: async (folderPath, name) => {
+    await db.renameFolder(folderPath, name)
+    return db.getFolders()
+  },
+  updateFolderArt: async (folderPath, artPath) => {
+    await db.updateFolderArt(folderPath, artPath)
+    return db.getFolders()
+  },
+  removeFolder: async (folderPath) => {
+    await db.removeFolder(folderPath)
+    return { folders: await db.getFolders(), tracks: await db.getAllTracks() }
+  },
+  reorderFolders: async (orderedPaths) => {
+    await db.reorderFolders(orderedPaths)
+    return db.getFolders()
+  },
 
   // ---- playlists ----
-  listPlaylists: () => notReady('listPlaylists'),
-  createPlaylist: () => notReady('createPlaylist'),
-  renamePlaylist: () => notReady('renamePlaylist'),
-  deletePlaylist: () => notReady('deletePlaylist'),
-  reorderPlaylists: () => notReady('reorderPlaylists'),
-  getPlaylistTracks: () => notReady('getPlaylistTracks'),
-  reorderPlaylistTracks: () => notReady('reorderPlaylistTracks'),
-  addTracksToPlaylist: () => notReady('addTracksToPlaylist'),
-  removeTracksFromPlaylist: () => notReady('removeTracksFromPlaylist'),
+  listPlaylists: () => db.getPlaylists(),
+  createPlaylist: (name) => db.createPlaylist(name),
+  renamePlaylist: async (id, name) => {
+    await db.renamePlaylist(id, name)
+    return db.getPlaylists()
+  },
+  deletePlaylist: async (id) => {
+    await db.deletePlaylist(id)
+    return db.getPlaylists()
+  },
+  reorderPlaylists: async (orderedIds) => {
+    await db.reorderPlaylists(orderedIds)
+    return db.getPlaylists()
+  },
+  getPlaylistTracks: (id) => db.getPlaylistTracks(id),
+  reorderPlaylistTracks: async (id, orderedTrackIds) => {
+    await db.reorderPlaylistTracks(id, orderedTrackIds)
+    return db.getPlaylistTracks(id)
+  },
+  addTracksToPlaylist: async (id, trackIds) => {
+    await db.addTracksToPlaylist(id, trackIds)
+    return { playlists: await db.getPlaylists(), tracks: await db.getPlaylistTracks(id) }
+  },
+  removeTracksFromPlaylist: async (id, trackIds) => {
+    await db.removeTracksFromPlaylist(id, trackIds)
+    return { playlists: await db.getPlaylists(), tracks: await db.getPlaylistTracks(id) }
+  },
 
-  // ---- media ----
+  // ---- media (Phase 4) ----
   getMediaUrl: () => notReady('getMediaUrl'),
   getArt: () => notReady('getArt'),
-  ensurePlayableAudio: () => notReady('ensurePlayableAudio'),
+  ensurePlayableAudio: (filePath) => Promise.resolve(filePath),
   listBackgroundImages: () => notReady('listBackgroundImages'),
   selectImage: () => notReady('selectImage'),
   selectFolder: () => notReady('selectFolder'),
 
-  // ---- OS transport ----
+  // ---- OS transport (Phase 5) ----
   onMediaPlayPause: () => notReady('onMediaPlayPause'),
   onMediaNextTrack: () => notReady('onMediaNextTrack'),
   onMediaPrevTrack: () => notReady('onMediaPrevTrack'),
