@@ -6,7 +6,7 @@
 
 import type { Platform } from '../types'
 
-export const desktopPlatform: Platform = {
+export const platform: Platform = {
   target: 'desktop',
 
   // ---- library: tracks ----

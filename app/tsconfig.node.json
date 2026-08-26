@@ -20,5 +20,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.mts", "electron/**/*.ts"]
+  "include": ["vite.config.mts", "capacitor.config.ts", "electron/**/*.ts"]
 }
