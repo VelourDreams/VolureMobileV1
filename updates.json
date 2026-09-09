@@ -1,0 +1,20 @@
+[
+  {
+    "version": "1.1.12",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.1.12.zip",
+    "notes": "add Delete Song",
+    "date": "2026-09-09T05:52:23.115Z"
+  },
+  {
+    "version": "1.1.11",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.1.11.zip",
+    "notes": "connect Settings menu",
+    "date": "2026-09-09T05:37:44.908Z"
+  },
+  {
+    "version": "1.1.10",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.1.10.zip",
+    "notes": "add Settings Updates history",
+    "date": "2026-09-09T05:24:36.985Z"
+  }
+]
