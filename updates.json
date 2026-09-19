@@ -1,0 +1,1022 @@
+[
+  {
+    "version": "1.2.174",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.174.zip",
+    "notes": "Note wallpapers now run continuously behind the toolbar",
+    "date": "2026-09-19T16:45:14.039Z"
+  },
+  {
+    "version": "1.2.173",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.173.zip",
+    "notes": "Now Playing slide-up, Change Art label",
+    "date": "2026-09-19T03:23:38.072Z"
+  },
+  {
+    "version": "1.2.172",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.172.zip",
+    "notes": "Black Lumiere background fix",
+    "date": "2026-09-19T02:26:09.053Z"
+  },
+  {
+    "version": "1.2.171",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.171.zip",
+    "notes": "Black Lumiere theme",
+    "date": "2026-09-19T02:21:38.561Z"
+  },
+  {
+    "version": "1.2.170",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.170.zip",
+    "notes": "Add Art and Upload in Now Playing menu; serif fonts for all Luxury themes",
+    "date": "2026-09-19T02:18:03.654Z"
+  },
+  {
+    "version": "1.2.169",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.169.zip",
+    "notes": "Fix Now Playing menu taps; choose cloud bank when uploading",
+    "date": "2026-09-19T01:51:16.740Z"
+  },
+  {
+    "version": "1.2.168",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.168.zip",
+    "notes": "Subtler, longer art fade; only on double tap",
+    "date": "2026-09-19T01:39:40.598Z"
+  },
+  {
+    "version": "1.2.167",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.167.zip",
+    "notes": "Smooth fade when switching Now Playing art",
+    "date": "2026-09-19T01:13:15.717Z"
+  },
+  {
+    "version": "1.2.166",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.166.zip",
+    "notes": "Double tap Now Playing art for theme default",
+    "date": "2026-09-19T01:07:13.519Z"
+  },
+  {
+    "version": "1.2.165",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.165.zip",
+    "notes": "New Category setup popup",
+    "date": "2026-09-19T00:56:27.114Z"
+  },
+  {
+    "version": "1.2.164",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.164.zip",
+    "notes": "Fix note formatting saving and preserve numbered lists, bold, and headings",
+    "date": "2026-09-18T23:40:33.892Z"
+  },
+  {
+    "version": "1.2.163",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.163.zip",
+    "notes": "Larger brighter Luxury album artwork lettering matching the HTML font pairing",
+    "date": "2026-09-18T20:39:48.895Z"
+  },
+  {
+    "version": "1.2.162",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.162.zip",
+    "notes": "Luxury artwork matches the original HTML gradient and glass rings",
+    "date": "2026-09-18T20:35:06.490Z"
+  },
+  {
+    "version": "1.2.161",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.161.zip",
+    "notes": "Luxury album artwork uses only the selected theme colors",
+    "date": "2026-09-18T20:29:33.919Z"
+  },
+  {
+    "version": "1.2.160",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.160.zip",
+    "notes": "Taller theme previews and luxury default artwork with Volure title and theme subtitle",
+    "date": "2026-09-18T20:23:53.402Z"
+  },
+  {
+    "version": "1.2.159",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.159.zip",
+    "notes": "Classic and Luxury collections with 10 new gradient glass themes and offline luxury fonts",
+    "date": "2026-09-18T18:48:31.785Z"
+  },
+  {
+    "version": "1.2.158",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.158.zip",
+    "notes": "Notes save button now confirms when your note is saved",
+    "date": "2026-09-18T04:46:42.427Z"
+  },
+  {
+    "version": "1.2.157",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.157.zip",
+    "notes": "Open albums at the top and restore album list position on return",
+    "date": "2026-09-18T04:30:02.853Z"
+  },
+  {
+    "version": "1.2.156",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.156.zip",
+    "notes": "Restore album list position after returning or choosing cover art",
+    "date": "2026-09-18T04:20:51.070Z"
+  },
+  {
+    "version": "1.2.155",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.155.zip",
+    "notes": "Update 1.2.155",
+    "date": "2026-09-18T03:40:10.556Z"
+  },
+  {
+    "version": "1.2.154",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.154.zip",
+    "notes": "Update 1.2.154",
+    "date": "2026-09-17T22:19:59.377Z"
+  },
+  {
+    "version": "1.2.153",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.153.zip",
+    "notes": "Update 1.2.153",
+    "date": "2026-09-17T21:51:02.698Z"
+  },
+  {
+    "version": "1.2.152",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.152.zip",
+    "notes": "Update 1.2.152",
+    "date": "2026-09-17T21:32:04.578Z"
+  },
+  {
+    "version": "1.2.151",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.151.zip",
+    "notes": "Update 1.2.151",
+    "date": "2026-09-17T19:33:02.152Z"
+  },
+  {
+    "version": "1.2.150",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.150.zip",
+    "notes": "Add mobile Play performance recording",
+    "date": "2026-09-17T18:58:49.598Z"
+  },
+  {
+    "version": "1.2.149",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.149.zip",
+    "notes": "Update 1.2.149",
+    "date": "2026-09-17T18:53:16.817Z"
+  },
+  {
+    "version": "1.2.148",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.148.zip",
+    "notes": "Update 1.2.148",
+    "date": "2026-09-17T18:19:14.977Z"
+  },
+  {
+    "version": "1.2.147",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.147.zip",
+    "notes": "Update 1.2.147",
+    "date": "2026-09-17T18:06:49.080Z"
+  },
+  {
+    "version": "1.2.146",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.146.zip",
+    "notes": "Update 1.2.146",
+    "date": "2026-09-17T17:27:26.337Z"
+  },
+  {
+    "version": "1.2.145",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.145.zip",
+    "notes": "Update 1.2.145",
+    "date": "2026-09-17T16:36:12.657Z"
+  },
+  {
+    "version": "1.2.144",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.144.zip",
+    "notes": "Keep Now Playing above opened photos",
+    "date": "2026-09-17T05:37:38.726Z"
+  },
+  {
+    "version": "1.2.143",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.143.zip",
+    "notes": "Fix Now Playing over opened images and update log dates",
+    "date": "2026-09-17T05:34:50.662Z"
+  },
+  {
+    "version": "1.2.142",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.142.zip",
+    "notes": "Fix Now Playing overlay background",
+    "date": "2026-09-17T05:30:23.770Z"
+  },
+  {
+    "version": "1.2.141",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.141.zip",
+    "notes": "Now Playing overlay with swipe-down close",
+    "date": "2026-09-17T05:25:31.846Z"
+  },
+  {
+    "version": "1.2.140",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.140.zip",
+    "notes": "Match Notes navigation swipe area and smooth Now Playing entry",
+    "date": "2026-09-17T05:18:04.072Z"
+  },
+  {
+    "version": "1.2.139",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.139.zip",
+    "notes": "Widen swipe-up area for Now Playing",
+    "date": "2026-09-17T05:14:01.605Z"
+  },
+  {
+    "version": "1.2.138",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.138.zip",
+    "notes": "Swipe up from any screen to open Now Playing",
+    "date": "2026-09-17T05:09:08.768Z"
+  },
+  {
+    "version": "1.2.137",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.137.zip",
+    "notes": "Fix mobile now-playing exit slide",
+    "date": "2026-09-17T03:29:33.789Z"
+  },
+  {
+    "version": "1.2.136",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.136.zip",
+    "notes": "Smooth now-playing exit",
+    "date": "2026-09-17T03:26:18.516Z"
+  },
+  {
+    "version": "1.2.135",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.135.zip",
+    "notes": "Delete Cloud Transfer banks from this device",
+    "date": "2026-09-17T02:16:59.893Z"
+  },
+  {
+    "version": "1.2.134",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.134.zip",
+    "notes": "Copy cloud images on mobile",
+    "date": "2026-09-17T02:14:21.673Z"
+  },
+  {
+    "version": "1.2.133",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.133.zip",
+    "notes": "Fix mobile Cloud Transfer bank header layout",
+    "date": "2026-09-17T02:10:47.737Z"
+  },
+  {
+    "version": "1.2.132",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.132.zip",
+    "notes": "Cloud Transfer upload button in active bank",
+    "date": "2026-09-17T01:45:01.257Z"
+  },
+  {
+    "version": "1.2.131",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.131.zip",
+    "notes": "Cloud Transfer uploads on desktop and mobile",
+    "date": "2026-09-17T01:00:13.180Z"
+  },
+  {
+    "version": "1.2.130",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.130.zip",
+    "notes": "Cloud Transfer music and image uploads",
+    "date": "2026-09-17T00:55:49.814Z"
+  },
+  {
+    "version": "1.2.129",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.129.zip",
+    "notes": "Mobile bank header layout",
+    "date": "2026-09-17T00:51:35.405Z"
+  },
+  {
+    "version": "1.2.128",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.128.zip",
+    "notes": "Customize magnet and Preserve Pitch tooltip cleanup",
+    "date": "2026-09-17T00:44:31.977Z"
+  },
+  {
+    "version": "1.2.127",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.127.zip",
+    "notes": "Cloud Transfer header and bank menu cleanup",
+    "date": "2026-09-17T00:26:43.487Z"
+  },
+  {
+    "version": "1.2.126",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.126.zip",
+    "notes": "Make large note pastes responsive",
+    "date": "2026-09-16T17:40:37.130Z"
+  },
+  {
+    "version": "1.2.125",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.125.zip",
+    "notes": "Prevent long note paste freezes",
+    "date": "2026-09-16T17:37:43.720Z"
+  },
+  {
+    "version": "1.2.124",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.124.zip",
+    "notes": "Fix Undo overlap with Back",
+    "date": "2026-09-16T17:30:55.455Z"
+  },
+  {
+    "version": "1.2.123",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.123.zip",
+    "notes": "Match Undo to Save control",
+    "date": "2026-09-16T17:24:58.416Z"
+  },
+  {
+    "version": "1.2.122",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.122.zip",
+    "notes": "Place Undo beside Back",
+    "date": "2026-09-16T17:19:45.291Z"
+  },
+  {
+    "version": "1.2.121",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.121.zip",
+    "notes": "Group note typing into natural undo actions",
+    "date": "2026-09-16T17:07:13.168Z"
+  },
+  {
+    "version": "1.2.120",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.120.zip",
+    "notes": "Fix note formatting toggles, undo, find replace, and header controls",
+    "date": "2026-09-16T16:58:11.320Z"
+  },
+  {
+    "version": "1.2.119",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.119.zip",
+    "notes": "Render markdown in regular notes and Time Track",
+    "date": "2026-09-16T16:32:57.852Z"
+  },
+  {
+    "version": "1.2.118",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.118.zip",
+    "notes": "Move Save and render note markdown",
+    "date": "2026-09-16T16:27:20.062Z"
+  },
+  {
+    "version": "1.2.117",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.117.zip",
+    "notes": "Raise formatting toolbar and align list icon",
+    "date": "2026-09-16T16:22:27.787Z"
+  },
+  {
+    "version": "1.2.116",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.116.zip",
+    "notes": "Position note formatting controls above selections",
+    "date": "2026-09-16T16:18:54.585Z"
+  },
+  {
+    "version": "1.2.115",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.115.zip",
+    "notes": "Add note formatting and Find And Replace",
+    "date": "2026-09-16T16:14:22.631Z"
+  },
+  {
+    "version": "1.2.114",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.114.zip",
+    "notes": "Preserve dates when disabling Time Track",
+    "date": "2026-09-16T16:06:06.888Z"
+  },
+  {
+    "version": "1.2.113",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.113.zip",
+    "notes": "Fix spaces in regular notes",
+    "date": "2026-09-16T16:01:28.379Z"
+  },
+  {
+    "version": "1.2.112",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.112.zip",
+    "notes": "Preserve spaces while typing notes",
+    "date": "2026-09-16T15:57:43.465Z"
+  },
+  {
+    "version": "1.2.111",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.111.zip",
+    "notes": "Simplify note image controls",
+    "date": "2026-09-16T15:55:18.051Z"
+  },
+  {
+    "version": "1.2.110",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.110.zip",
+    "notes": "Fix Journal grid horizontal overflow",
+    "date": "2026-09-16T15:27:37.898Z"
+  },
+  {
+    "version": "1.2.109",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.109.zip",
+    "notes": "Dial down photo adjustment slider strength",
+    "date": "2026-09-16T15:15:19.935Z"
+  },
+  {
+    "version": "1.2.108",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.108.zip",
+    "notes": "Label Save button and soften note editor controls",
+    "date": "2026-09-16T14:57:34.991Z"
+  },
+  {
+    "version": "1.2.107",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.107.zip",
+    "notes": "Restore circular note covers and keep in-place save",
+    "date": "2026-09-16T14:54:47.857Z"
+  },
+  {
+    "version": "1.2.106",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.106.zip",
+    "notes": "Fix image-first note duplicates and add in-place save",
+    "date": "2026-09-16T14:52:02.581Z"
+  },
+  {
+    "version": "1.2.105",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.105.zip",
+    "notes": "Smooth Nexus orbit and fix duplicate note images",
+    "date": "2026-09-16T14:46:35.449Z"
+  },
+  {
+    "version": "1.2.104",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.104.zip",
+    "notes": "Keep dates on image-first note previews",
+    "date": "2026-09-16T14:35:59.760Z"
+  },
+  {
+    "version": "1.2.103",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.103.zip",
+    "notes": "Fix inline image rendering and dashboard previews",
+    "date": "2026-09-16T14:28:58.567Z"
+  },
+  {
+    "version": "1.2.102",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.102.zip",
+    "notes": "Add note deletion from dashboard",
+    "date": "2026-09-16T14:18:50.722Z"
+  },
+  {
+    "version": "1.2.101",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.101.zip",
+    "notes": "Fix note image persistence and deletion",
+    "date": "2026-09-16T14:15:51.065Z"
+  },
+  {
+    "version": "1.2.100",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.100.zip",
+    "notes": "Refined note typography and spacing",
+    "date": "2026-09-16T14:03:57.417Z"
+  },
+  {
+    "version": "1.2.99",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.99.zip",
+    "notes": "Refined opened note layout",
+    "date": "2026-09-16T13:57:33.197Z"
+  },
+  {
+    "version": "1.2.98",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.98.zip",
+    "notes": "Time Track entry and image controls",
+    "date": "2026-09-16T13:49:37.964Z"
+  },
+  {
+    "version": "1.2.97",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.97.zip",
+    "notes": "Larger readable Time Track dates",
+    "date": "2026-09-16T13:42:43.771Z"
+  },
+  {
+    "version": "1.2.96",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.96.zip",
+    "notes": "Time Track Notes interpreter and full-width entries",
+    "date": "2026-09-16T13:38:48.703Z"
+  },
+  {
+    "version": "1.2.95",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.95.zip",
+    "notes": "Preserve pitch and playback fixes",
+    "date": "2026-09-16T13:24:38.031Z"
+  },
+  {
+    "version": "1.2.94",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.94.zip",
+    "notes": "Fix Notes menu and Time Track Notes build",
+    "date": "2026-09-16T13:16:40.153Z"
+  },
+  {
+    "version": "1.2.93",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.93.zip",
+    "notes": "Smooth Nexus orbit again and remove ellipsis badges",
+    "date": "2026-09-16T12:25:15.616Z"
+  },
+  {
+    "version": "1.2.92",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.92.zip",
+    "notes": "Longer fade to fully eliminate play/pause/repeat click",
+    "date": "2026-09-16T12:23:39.973Z"
+  },
+  {
+    "version": "1.2.91",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.91.zip",
+    "notes": "Fixed repeat-one crackle and skip-to-next bug",
+    "date": "2026-09-16T12:18:47.595Z"
+  },
+  {
+    "version": "1.2.90",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.90.zip",
+    "notes": "Smooth Nexus orbit motion and keep it higher on screen",
+    "date": "2026-09-16T12:17:44.223Z"
+  },
+  {
+    "version": "1.2.89",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.89.zip",
+    "notes": "Fix Nexus orbit height and art menu snap",
+    "date": "2026-09-16T12:11:52.384Z"
+  },
+  {
+    "version": "1.2.88",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.88.zip",
+    "notes": "Refine Now Playing menu and import Nexus to Notes",
+    "date": "2026-09-16T12:02:36.871Z"
+  },
+  {
+    "version": "1.2.87",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.87.zip",
+    "notes": "Update Now Playing art menu",
+    "date": "2026-09-16T11:53:34.340Z"
+  },
+  {
+    "version": "1.2.86",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.86.zip",
+    "notes": "Move Volure Play below Volure Notes",
+    "date": "2026-09-16T11:47:00.590Z"
+  },
+  {
+    "version": "1.2.85",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.85.zip",
+    "notes": "Use Studio icon and remove opened Notes top gap",
+    "date": "2026-09-16T11:40:04.513Z"
+  },
+  {
+    "version": "1.2.84",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.84.zip",
+    "notes": "Show Volure View header above gallery",
+    "date": "2026-09-16T11:30:25.896Z"
+  },
+  {
+    "version": "1.2.83",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.83.zip",
+    "notes": "Add full header to Volure View",
+    "date": "2026-09-16T11:27:48.190Z"
+  },
+  {
+    "version": "1.2.82",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.82.zip",
+    "notes": "Add space below sidebar Menu header",
+    "date": "2026-09-16T11:22:55.659Z"
+  },
+  {
+    "version": "1.2.81",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.81.zip",
+    "notes": "Move sidebar content lower",
+    "date": "2026-09-16T11:20:51.977Z"
+  },
+  {
+    "version": "1.2.80",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.80.zip",
+    "notes": "Add Menu header and divider to sidebar",
+    "date": "2026-09-16T11:16:30.431Z"
+  },
+  {
+    "version": "1.2.79",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.79.zip",
+    "notes": "Match mobile sidebar icons to app shortcuts",
+    "date": "2026-09-16T11:03:38.172Z"
+  },
+  {
+    "version": "1.2.78",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.78.zip",
+    "notes": "Update 1.2.78",
+    "date": "2026-09-16T10:19:13.144Z"
+  },
+  {
+    "version": "1.2.77",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.77.zip",
+    "notes": "fixed photo selection and the ellipsis dropdown in the flat All Photos view",
+    "date": "2026-09-16T09:11:47.379Z"
+  },
+  {
+    "version": "1.2.76",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.76.zip",
+    "notes": "added multi-select, hide/unhide, and album move/copy screens to Volure View",
+    "date": "2026-09-16T07:34:19.853Z"
+  },
+  {
+    "version": "1.2.75",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.75.zip",
+    "notes": "Double-tap Studio or Notes title to return to Volure Music",
+    "date": "2026-09-16T07:02:27.953Z"
+  },
+  {
+    "version": "1.2.74",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.74.zip",
+    "notes": "fixed the size of the favorites preset pills",
+    "date": "2026-09-16T06:37:50.650Z"
+  },
+  {
+    "version": "1.2.73",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.73.zip",
+    "notes": "Update 1.2.73",
+    "date": "2026-09-16T06:20:13.029Z"
+  },
+  {
+    "version": "1.2.72",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.72.zip",
+    "notes": "Restore compact preset pill layout and unlimited favorites",
+    "date": "2026-09-16T06:13:56.720Z"
+  },
+  {
+    "version": "1.2.71",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.71.zip",
+    "notes": "fix sidebar position: fixed offset below header on every page, matching the original correct placement",
+    "date": "2026-09-16T05:59:41.637Z"
+  },
+  {
+    "version": "1.2.70",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.70.zip",
+    "notes": "nexus: fix orbit-circle border render glitch (overflow:visible), Notes/View menu icon + Notes top header, unify sidebar to fixed position",
+    "date": "2026-09-16T05:43:24.106Z"
+  },
+  {
+    "version": "1.2.69",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.69.zip",
+    "notes": "nexus: fix background glow bleeding through orbit circles, black plus buttons, lighter nexus typography; replace mobile section-switcher chevron with menu icon",
+    "date": "2026-09-16T05:10:34.970Z"
+  },
+  {
+    "version": "1.2.68",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.68.zip",
+    "notes": "fix nexus glow color, rotation reversal, plus-button style, parent-circle visibility, node font weight; remove unused up-arrow action sheet",
+    "date": "2026-09-16T04:25:38.638Z"
+  },
+  {
+    "version": "1.2.67",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.67.zip",
+    "notes": "Update 1.2.67",
+    "date": "2026-09-16T03:54:38.266Z"
+  },
+  {
+    "version": "1.2.66",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.66.zip",
+    "notes": "add Nexus orbit zoom transitions and center glow",
+    "date": "2026-09-16T03:23:54.891Z"
+  },
+  {
+    "version": "1.2.65",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.65.zip",
+    "notes": "fix Nexus circles showing a solid color instead of the photo",
+    "date": "2026-09-16T02:47:02.449Z"
+  },
+  {
+    "version": "1.2.64",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.64.zip",
+    "notes": "fix Nexus circle image crop appearing blurry and cropped wrong",
+    "date": "2026-09-16T02:36:28.248Z"
+  },
+  {
+    "version": "1.2.63",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.63.zip",
+    "notes": "Update 1.2.63",
+    "date": "2026-09-16T02:06:36.101Z"
+  },
+  {
+    "version": "1.2.62",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.62.zip",
+    "notes": "Fix photo editor tool layout",
+    "date": "2026-09-16T01:21:33.320Z"
+  },
+  {
+    "version": "1.2.61",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.61.zip",
+    "notes": "Update 1.2.61",
+    "date": "2026-09-16T01:21:01.964Z"
+  },
+  {
+    "version": "1.2.60",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.60.zip",
+    "notes": "Update 1.2.60",
+    "date": "2026-09-16T00:32:53.549Z"
+  },
+  {
+    "version": "1.2.59",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.59.zip",
+    "notes": "Update 1.2.59",
+    "date": "2026-09-16T00:26:21.324Z"
+  },
+  {
+    "version": "1.2.58",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.58.zip",
+    "notes": "Fixed Cloud Transfer showing the old flat style instead of the glossy accent-themed look",
+    "date": "2026-09-15T23:23:17.078Z"
+  },
+  {
+    "version": "1.2.56",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.56.zip",
+    "notes": "Cloud Transfer visual cleanup and empty-state header fix",
+    "date": "2026-09-15T22:52:00.204Z"
+  },
+  {
+    "version": "1.2.55",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.55.zip",
+    "notes": "fix Cloud Transfer phone styling and empty state",
+    "date": "2026-09-15T22:49:13.488Z"
+  },
+  {
+    "version": "1.2.54",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.54.zip",
+    "notes": "match Cloud Transfer to the Home sort menu",
+    "date": "2026-09-15T22:39:43.766Z"
+  },
+  {
+    "version": "1.2.53",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.53.zip",
+    "notes": "keep bank name placeholder in title case",
+    "date": "2026-09-15T22:34:01.998Z"
+  },
+  {
+    "version": "1.2.52",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.52.zip",
+    "notes": "cloud bank setup flow and matching window background",
+    "date": "2026-09-15T22:27:20.216Z"
+  },
+  {
+    "version": "1.2.51",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.51.zip",
+    "notes": "cloud bank naming and link setup",
+    "date": "2026-09-15T22:26:10.993Z"
+  },
+  {
+    "version": "1.2.50",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.50.zip",
+    "notes": "Update 1.2.50",
+    "date": "2026-09-15T22:15:45.125Z"
+  },
+  {
+    "version": "1.2.49",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.49.zip",
+    "notes": "Shared cloud banks",
+    "date": "2026-09-15T21:52:18.069Z"
+  },
+  {
+    "version": "1.2.48",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.48.zip",
+    "notes": "Daily update counts",
+    "date": "2026-09-15T21:23:51.186Z"
+  },
+  {
+    "version": "1.2.47",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.47.zip",
+    "notes": "Offline photo filters",
+    "date": "2026-09-15T21:13:24.427Z"
+  },
+  {
+    "version": "1.2.46",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.46.zip",
+    "notes": "Fixed Cloud Transfer downloads for incomplete or expired song items",
+    "date": "2026-09-15T20:10:52.805Z"
+  },
+  {
+    "version": "1.2.45",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.45.zip",
+    "notes": "Added photo cloud transfer from Volure View using the full-view three-dots menu",
+    "date": "2026-09-15T20:03:53.682Z"
+  },
+  {
+    "version": "1.2.44",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.44.zip",
+    "notes": "Added the new default Volure background with Remove photo and Default restore options",
+    "date": "2026-09-15T19:39:58.571Z"
+  },
+  {
+    "version": "1.2.43",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.43.zip",
+    "notes": "Fixed app-wide back navigation through photo editing, dialogs, viewers, folders, and nested pages",
+    "date": "2026-09-15T19:19:55.006Z"
+  },
+  {
+    "version": "1.2.42",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.42.zip",
+    "notes": "Improved exposure-style brightness and smoother shadow and highlight controls",
+    "date": "2026-09-15T19:08:00.688Z"
+  },
+  {
+    "version": "1.2.41",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.41.zip",
+    "notes": "Improved photo edit quality for smoother adjustments and higher-quality saved photos",
+    "date": "2026-09-15T18:56:41.990Z"
+  },
+  {
+    "version": "1.2.36",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.36.zip",
+    "notes": "Added Nexus circle images with adjustable circular cropping and preserved back navigation",
+    "date": "2026-09-15T10:54:18.451Z"
+  },
+  {
+    "version": "1.2.34",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.34.zip",
+    "notes": "Cleaner local photo adjustments",
+    "date": "2026-09-15T09:07:50.980Z"
+  },
+  {
+    "version": "1.2.33",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.33.zip",
+    "notes": "Update 1.2.33",
+    "date": "2026-09-15T08:55:41.155Z"
+  },
+  {
+    "version": "1.2.32",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.32.zip",
+    "notes": "Fix specificity so force-visible actually beats the hover-suppression rule",
+    "date": "2026-09-15T08:19:51.203Z"
+  },
+  {
+    "version": "1.2.31",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.31.zip",
+    "notes": "Fix stuck hover keeping the art three-dot button visible on mobile",
+    "date": "2026-09-15T08:16:53.199Z"
+  },
+  {
+    "version": "1.2.30",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.30.zip",
+    "notes": "Fix grid margins, art-tap toggle bleed, bottom-bar preset bleed, and invisible Adjust slider thumb",
+    "date": "2026-09-15T08:13:04.728Z"
+  },
+  {
+    "version": "1.2.29",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.29.zip",
+    "notes": "Fix year-swipe boundary directions to match other tabs; scroll active year chip into view",
+    "date": "2026-09-15T07:34:05.456Z"
+  },
+  {
+    "version": "1.2.28",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.28.zip",
+    "notes": "Update 1.2.28",
+    "date": "2026-09-15T07:24:44.417Z"
+  },
+  {
+    "version": "1.2.27",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.27.zip",
+    "notes": "Swipe between song years, remove the Now Playing return delay, center Customize slider thumbs, and unify Volure typography",
+    "date": "2026-09-15T06:40:03.605Z"
+  },
+  {
+    "version": "1.2.26",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.26.zip",
+    "notes": "Keep the selected song year when returning from Now Playing",
+    "date": "2026-09-15T05:31:20.893Z"
+  },
+  {
+    "version": "1.2.25",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.25.zip",
+    "notes": "Now Playing returns to the same list position, album-art tap reveals the saved year, and the EQ connector ends at the outer scrubbers",
+    "date": "2026-09-15T05:17:02.128Z"
+  },
+  {
+    "version": "1.2.24",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.24.zip",
+    "notes": "Year lists now run newest-to-oldest by original saved date, with the year selector pinned while scrolling.",
+    "date": "2026-09-15T04:45:48.977Z"
+  },
+  {
+    "version": "1.2.23",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.23.zip",
+    "notes": "All song years are backfilled from each audio file's preserved original saved date.",
+    "date": "2026-09-15T04:31:38.912Z"
+  },
+  {
+    "version": "1.2.22",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.22.zip",
+    "notes": "Song years now follow each audio file's preserved original saved date across phone transfers.",
+    "date": "2026-09-15T04:26:43.713Z"
+  },
+  {
+    "version": "1.2.21",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.21.zip",
+    "notes": "Songs without a tagged release year now stay Unknown instead of using the year they reached the phone.",
+    "date": "2026-09-15T04:12:45.215Z"
+  },
+  {
+    "version": "1.2.20",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.20.zip",
+    "notes": "Add changelog entry for photo date-sort fix",
+    "date": "2026-09-15T04:01:06.062Z"
+  },
+  {
+    "version": "1.2.19",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.19.zip",
+    "notes": "Fix photo date fallback: prefer file modified time over device-added time",
+    "date": "2026-09-15T03:58:47.049Z"
+  },
+  {
+    "version": "1.2.18",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.18.zip",
+    "notes": "Add changelog entry for share/scrubber/photo-editor fixes",
+    "date": "2026-09-15T03:41:17.845Z"
+  },
+  {
+    "version": "1.2.17",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.17.zip",
+    "notes": "Fix native share sheet, video scrubber clearance, photo editor save bug",
+    "date": "2026-09-15T03:32:46.895Z"
+  },
+  {
+    "version": "1.2.16",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.16.zip",
+    "notes": "Native share fix, video scrubber clearance, photo editor save fix, bottom-nav icons",
+    "date": "2026-09-15T03:18:37.517Z"
+  },
+  {
+    "version": "1.2.15",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.15.zip",
+    "notes": "Fix the Notes bottom tab bar rendering under the on-screen navigation buttons on 3-button nav devices",
+    "date": "2026-09-15T02:27:57.958Z"
+  },
+  {
+    "version": "1.2.14",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.14.zip",
+    "notes": "Add search bar and Journal/Notes/Settings bottom tabs to Volure Notes",
+    "date": "2026-09-15T02:05:48.509Z"
+  },
+  {
+    "version": "1.2.13",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.13.zip",
+    "notes": "Add per-note cover photos to Volure Notes so the grid can show a different picture for each note",
+    "date": "2026-09-15T01:41:04.745Z"
+  },
+  {
+    "version": "1.2.12",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.12.zip",
+    "notes": "Fix the Equalizer curve cutting off and drifting out of alignment, and match Playback Speed/Amplify scrubbers to the Equalizer band style",
+    "date": "2026-09-15T00:49:26.710Z"
+  },
+  {
+    "version": "1.2.11",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.11.zip",
+    "notes": "Redo the Equalizer's faders as hairline tracks with a glowing dot handle so the connecting curve reads as one continuous line",
+    "date": "2026-09-15T00:19:11.293Z"
+  },
+  {
+    "version": "1.2.10",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.10.zip",
+    "notes": "Fix album back-out swipe direction, redesign the Equalizer to match your theme, and add a Check For Updates button",
+    "date": "2026-09-14T23:50:03.686Z"
+  },
+  {
+    "version": "1.2.9",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.9.zip",
+    "notes": "Fix album back-out swipe direction and redesign the Equalizer to match your theme",
+    "date": "2026-09-14T23:47:20.403Z"
+  },
+  {
+    "version": "1.2.8",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.8.zip",
+    "notes": "Fix Edit Song Details entrance direction, animate Android back-button navigation in Volure View, and smooth out photo loading",
+    "date": "2026-09-14T23:18:45.074Z"
+  },
+  {
+    "version": "1.2.7",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.7.zip",
+    "notes": "Smoother transitions across Volure View, Now Playing and Edit Song Details, plus swipe-back from Edit Song Details",
+    "date": "2026-09-14T22:16:16.371Z"
+  },
+  {
+    "version": "1.2.6",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.6.zip",
+    "notes": "Now-playing bar shows artist and duration, swipe to edit song details, fix invisible Adjust slider thumb",
+    "date": "2026-09-14T21:43:33.452Z"
+  },
+  {
+    "version": "1.2.5",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.5.zip",
+    "notes": "Fix invisible slider thumb, blurry Adjust preview, hide artist on now-playing bar",
+    "date": "2026-09-14T21:20:15.816Z"
+  },
+  {
+    "version": "1.2.4",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.4.zip",
+    "notes": "Theme-matched Adjust colors, bigger snap-to-zero slider, photo viewer Edit/Share/Delete bar",
+    "date": "2026-09-14T20:59:05.745Z"
+  },
+  {
+    "version": "1.2.3",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.3.zip",
+    "notes": "Adjust redesign (icon row + one slider), Updates in the home menu with Last Updated",
+    "date": "2026-09-14T20:31:38.497Z"
+  },
+  {
+    "version": "1.2.2",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.2.2.zip",
+    "notes": "More photo adjustments: saturation, sharpness, temperature, shadows, highlights",
+    "date": "2026-09-14T20:15:01.522Z"
+  },
+  {
+    "version": "1.1.12",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.1.12.zip",
+    "notes": "add Delete Song",
+    "date": "2026-09-09T05:52:23.115Z"
+  },
+  {
+    "version": "1.1.11",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.1.11.zip",
+    "notes": "connect Settings menu",
+    "date": "2026-09-09T05:37:44.908Z"
+  },
+  {
+    "version": "1.1.10",
+    "url": "https://raw.githubusercontent.com/VelourDreams/VolureMobileV1/ota/bundle-1.1.10.zip",
+    "notes": "add Settings Updates history",
+    "date": "2026-09-09T05:24:36.985Z"
+  }
+]
